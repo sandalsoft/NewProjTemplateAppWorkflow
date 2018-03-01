@@ -1,1 +1,19 @@
-module.exports = {};
+var pkg = require('./package.json'),
+  env = 'public/',
+  src = 'src/',
+  config = {
+    name: pkg.name,
+    repoURL:
+      'https://raw.githubusercontent.com/sandalsoft/NewProjTemplateAppWorkflow/master/',
+    pluginOpts: {
+      mkdir: {
+        dirs: ['src', 'tests', 'lib', 'dist']
+      },
+      eslint: {
+        remoteFileURL:
+          'https://raw.githubusercontent.com/sandalsoft/NewProjTemplateAppWorkflow/master/.eslintrc',
+        localFile: './BOB.eslintrc'
+      }
+    }
+  };
+module.exports = config;
