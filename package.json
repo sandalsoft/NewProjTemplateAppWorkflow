@@ -1,5 +1,5 @@
 {
-  "name": "NewProjTemplateAppWorkflow",
+  "name": "newProjTemplateAppWorkflow",
   "version": "0.1.0",
   "main": "index.js",
   "license": "MIT",
@@ -9,8 +9,6 @@
     "dev": "node ./dist/index.js"
   },
   "devDependencies": {
-    "babel": "^6.23.0",
-    "babel-core": "^6.26.0",
     "babel-plugin-transform-es2015-spread": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
