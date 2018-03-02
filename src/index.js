@@ -1,17 +1,16 @@
 import Directory from 'directory-helpers';
+import nodeCmd from 'node-cmd';
+import { promisify } from 'util';
 
-let { x, y, ...z } = { x: 1, y: 2, a: 3, b: 4 };
-let obj = {
-  foo: 'bar',
-  ...z
-};
-console.log(x); // 1
-console.log(y); // 2
-console.log(z); // { a: 3, b: 4 }
-console.log(obj);
+const cmd = promisify(nodeCmd.get, { multiArgs: true, context: nodeCmd });
 
-class myBoss {
-  durr() {
-    console.log(hi);
+const main = async () => {
+  try {
+    const output = await cmd('git log | more');
+    console.log(output);
+  } catch (err) {
+    console.log(`err: ${JSON.stringify(err)}`);
   }
-}
+};
+
+main();
