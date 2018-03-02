@@ -4,11 +4,7 @@ todo
 * github.com create private repo
 * githubadd remote
 * create .gitignore
-* mkdir directories
-  src
-  tests
-  lib
-  dist
+
 * create default components
   log (lib/log.js)
 
@@ -40,4 +36,10 @@ todo
   eslint
   jest
 
-*
+---
+
+* mkdir directories
+  src
+  tests
+  lib
+  dist

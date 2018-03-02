@@ -18,8 +18,10 @@
   "dependencies": {
     "axios": "^0.18.0",
     "directory-helpers": "^0.1.8",
+    "github-api": "^3.0.0",
     "global": "^4.3.2",
     "gulp-cli": "^2.0.1",
-    "mkdirp": "^0.5.1"
+    "mkdirp": "^0.5.1",
+    "simple-git": "^1.91.0"
   }
 }

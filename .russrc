@@ -1,18 +1,47 @@
+// module.exports = {};
+const process = require('process');
+
+const basePath = './output/';
+
 var pkg = require('./package.json'),
   env = 'public/',
   src = 'src/',
   config = {
     name: pkg.name,
+
     repoURL:
       'https://raw.githubusercontent.com/sandalsoft/NewProjTemplateAppWorkflow/master/',
     pluginOpts: {
       mkdir: {
-        dirs: ['src', 'tests', 'lib', 'dist']
+        dirs: [
+          `${basePath}/src`,
+          `${basePath}/tests`,
+          `${basePath}/lib`,
+          `${basePath}/dist`
+        ]
       },
       eslint: {
         remoteFileURL:
           'https://raw.githubusercontent.com/sandalsoft/NewProjTemplateAppWorkflow/master/.eslintrc',
-        localFile: './BOB.eslintrc'
+        localFile: `${basePath}/.eslintrc`
+      },
+      git: {
+        workingDir: './output/',
+        githubUsername: 'sandalsoft',
+        githubRepoName: process.env.BOILERROOM_PROJECT_NAME,
+        githubRepoURL: `https://github.com/sandalsoft/${
+          process.env.BOILERROOM_PROJECT_NAME
+        }`,
+        githubToken: process.env.GITHUB_TOKEN,
+        repoDetails: {
+          name: process.env.BOILERROOM_PROJECT_NAME,
+          description: 'This is your first repository',
+          homepage: 'https://github.com/',
+          private: true,
+          has_issues: true,
+          has_projects: true,
+          has_wiki: true
+        }
       }
     }
   };
