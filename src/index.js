@@ -1,15 +1,24 @@
-import Directory from 'directory-helpers';
 import nodeCmd from 'node-cmd';
 import { promisify } from 'util';
+import { log } from './util';
 
-const cmd = promisify(nodeCmd.get, { multiArgs: true, context: nodeCmd });
+const exec = promisify(nodeCmd.get, { multiArgs: true, context: nodeCmd });
+
+const executeCmd = async cmd => await exec(cmd);
+
+const executeGitSetOrigin = async (username, projectName) =>
+  await executeCmd(
+    `echo "git remote set-url origin git@github.com:${username}/${projectName}.git"`
+  );
 
 const main = async () => {
   try {
-    const output = await cmd('git log | more');
-    console.log(output);
+    const githubUser = 'sandalsoft';
+    const projectName = 'boober';
+    const output = await executeGitSetOrigin(githubUser, projectNam);
+    log(output);
   } catch (err) {
-    console.log(`err: ${JSON.stringify(err)}`);
+    log(new Error(err.stack) || new Error(err));
   }
 };
 
