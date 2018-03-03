@@ -6,7 +6,7 @@
   "scripts": {
     "pretranspile": "rm -rf ./dist",
     "transpile": "babel src --out-dir ./dist  --source-maps -q",
-    "predev": "npm run transpile && clear",
+    "predev": "npm run transpile",
     "dev": "node ./dist/index.js"
   },
   "devDependencies": {

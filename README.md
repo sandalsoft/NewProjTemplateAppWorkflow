@@ -1,31 +1,55 @@
 todo
 
-* git init
-* github.com create private repo
-* githubadd remote
+* Design
 
-* create default components
-  log (lib/log.js)
+  * cmdline script or vscode plugin? Leaning toward cmdline for portability and ease
+  * yeoman generator or node script? node script
 
-* generator for new component
+- generator for new component
+
+  * use yeoman ? or create my own? (my own!)
+  * prompt for name if not supplied on cmdline
   * mkdir (src/componentName)
-  * create js file
-* yarn init w/ defaults
-* create npm scripts
-  * test
-  * test:watch
-  * dev(or start, not sure which)
-  * predev (transpiles)
-  * build
-  * bump
-  * version
-  * preversion
-  * postverion
-  * deploy
-  * deploy:local
-  * deploy:?
-  * commitMsg:deploy
-* yarn add -D common packages
+  * create index js file that imports componentn name
+  * creates component.js and exports
+
+- git
+
+  * github.com create private repo
+  * When everything else is done git commit INITIAL COMMIT
+    = git add remote origin
+    = git init
+    = create .gitignore
+
+- babel
+
+  * download .babelrc
+  * install babel packages (or add to package.json)
+
+- eslint
+
+  * download .eslintrc
+  * activate eslint in vscode
+
+- vscode
+
+  * .vscode/launch.json // for debugging setup
+
+- npm - create package.json and install modules (run yarn)
+  ** scripts
+  _ test
+  _ test:watch
+  _ dev(or start, not sure which)
+  _ predev (transpiles)
+  _ build
+  _ bump
+  _ version
+  _ preversion
+  _ postverion
+  _ deploy
+  _ deploy:local
+  _ deploy:? \* commitMsg:deploy
+  ** packages - programatically add these to package.json. other compoentns will call this to add their packages. ie. babel component will call packageJson.addPackage(['babel-core', 'babel-eslint', etc.])
   babel-core
   babel-eslint
   babel-cli
@@ -39,14 +63,13 @@ todo
   "transform-object-rest-spread",
   "transform-async-to-generator"
 
-* files to download
-  .gitignore
-  .eslintrc
-  .babelrc
-  .vscode/launch.json // for debugging setup
-  ---=[ done ]=-
+---=[ done ]=-
 
-* mkdir directories
+* create default components
+  log (src/util/log.js)
+
+- create directories
   src
+  src/util
   tests
   dist
