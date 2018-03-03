@@ -3,7 +3,6 @@ todo
 * git init
 * github.com create private repo
 * githubadd remote
-* create .gitignore
 
 * create default components
   log (lib/log.js)
@@ -35,11 +34,19 @@ todo
   prettyjson
   eslint
   jest
+  pretty-error
+  "transform-es2015-spread",
+  "transform-object-rest-spread",
+  "transform-async-to-generator"
 
----
+* files to download
+  .gitignore
+  .eslintrc
+  .babelrc
+  .vscode/launch.json // for debugging setup
+  ---=[ done ]=-
 
 * mkdir directories
   src
   tests
-  lib
   dist
