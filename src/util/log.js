@@ -1,7 +1,5 @@
-// import chalk from 'chalk';
-// const errorFont = chalk.bold.red;
-
 import PrettyError from 'pretty-error';
+
 const pe = new PrettyError();
 pe.skipNodeFiles();
 

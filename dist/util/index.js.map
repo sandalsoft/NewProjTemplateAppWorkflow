@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/util/index.js"],"names":["log"],"mappings":";;;;;;;AAAA;;QACSA,G","file":"index.js","sourcesContent":["import { log } from './log';\nexport { log };\n"]}

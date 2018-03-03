@@ -13,9 +13,10 @@ const executeGitSetOrigin = async (username, projectName) =>
 
 const main = async () => {
   try {
+    log('lets do this!');
     const githubUser = 'sandalsoft';
     const projectName = 'boober';
-    const output = await executeGitSetOrigin(githubUser, projectNam);
+    const output = await executeGitSetOrigin(githubUser, projectName);
     log(output);
   } catch (err) {
     log(new Error(err.stack) || new Error(err));

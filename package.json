@@ -5,29 +5,23 @@
   "license": "MIT",
   "scripts": {
     "pretranspile": "rm -rf ./dist",
-    "transpile": "babel src --out-dir ./dist --source-maps inline",
-    "predev": "npm run transpile",
+    "transpile": "babel src --out-dir ./dist  --source-maps -q",
+    "predev": "npm run transpile && clear",
     "dev": "node ./dist/index.js"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.2",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-es2015-spread": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "eslint": "^4.18.2",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.1"
+    "eslint": "^4.18.2"
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "chalk": "^2.3.2",
-    "directory-helpers": "^0.1.8",
-    "github-api": "^3.0.0",
     "global": "^4.3.2",
-    "gulp-cli": "^2.0.1",
-    "mkdirp": "^0.5.1",
     "node-cmd": "^3.0.0",
-    "pretty-error": "^2.1.1",
-    "simple-git": "^1.91.0"
+    "pretty-error": "^2.1.1"
   }
 }
