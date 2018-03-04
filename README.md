@@ -39,12 +39,15 @@ return output
 
 - eslint
 
-  * download .eslintrc
-  * activate eslint in vscode
+  o activate eslint in vscode - (set in vscode preferences "eslint.enable": true)
+  = sharable npm module - located in src/eslint
 
 - vscode
 
-  * .vscode/launch.json // for debugging setup
+* activate eslint in vscode -
+  * done in user preferences
+* user preferences - ~/Library/Application Support/Code/User
+* .vscode/launch.json // for debugging setup
 
 - npm - create package.json and install modules (run yarn)
   ** scripts
