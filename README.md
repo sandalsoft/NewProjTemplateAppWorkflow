@@ -1,5 +1,13 @@
 todo
 
+functional HoF
+const fetchWithLogging(func) {
+log('fetching')
+output = apply(func) // this is fetchURL() or something
+log('got ${output});
+return output
+}
+
 * Design
 
   * cmdline script or vscode plugin? Leaning toward cmdline for portability and ease
@@ -15,11 +23,14 @@ todo
 
 - git
 
-  * github.com create private repo
+  * git push -u origin master
+  * create LICENSE
+  * create README
   * When everything else is done git commit INITIAL COMMIT
     = git add remote origin
     = git init
     = create .gitignore
+    = github.com create private repo
 
 - babel
 

@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "pretranspile": "rm -rf ./dist",
-    "transpile": "babel src --out-dir ./dist  --source-maps -q",
+    "pretranspile": "echo 'cleaning /dist' && rm -rf ./dist",
+    "transpile":
+      "echo 'Compiling ./src -> ./dist' && babel src --out-dir ./dist  --source-maps -q",
     "predev": "npm run transpile",
     "dev": "node ./dist/index.js"
   },
@@ -22,6 +23,7 @@
     "axios": "^0.18.0",
     "global": "^4.3.2",
     "node-cmd": "^3.0.0",
-    "pretty-error": "^2.1.1"
+    "pretty-error": "^2.1.1",
+    "pretty-format": "^22.4.0"
   }
 }

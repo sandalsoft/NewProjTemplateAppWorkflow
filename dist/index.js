@@ -14,7 +14,8 @@ const main = (() => {
       // const projectName = 'boober';
       // await gitInit();
       // const output = await setGithubOrigin(githubUser, projectName);
-      const output = yield (0, _git.gitignore)('./.gitignore');
+      // const output = await gitignore('./.gitignore');
+      const output = yield (0, _git.createGithubRepo)();
       (0, _util.log)(output);
     } catch (err) {
       (0, _util.log)(new Error(err.stack) || new Error(err));
