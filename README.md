@@ -34,22 +34,23 @@ return output
 
 - babel
 
-  * download .babelrc
+  = download .babelrc
+
   * install babel packages (or add to package.json)
 
-- eslint
+* eslint
 
   o activate eslint in vscode - (set in vscode preferences "eslint.enable": true)
   = sharable npm module - located in src/eslint
 
-- vscode
+* vscode
 
-* activate eslint in vscode -
+- activate eslint in vscode -
   * done in user preferences
-* user preferences - ~/Library/Application Support/Code/User
-* .vscode/launch.json // for debugging setup
+- user preferences - ~/Library/Application Support/Code/User
+- .vscode/launch.json // for debugging setup
 
-- npm - create package.json and install modules (run yarn)
+* npm - create package.json and install modules (run yarn)
   ** scripts
   _ test
   _ test:watch
