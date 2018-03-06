@@ -1,2 +1,6 @@
 {
+  "workbench.colorCustomizations": {
+    "editor.selectionBackground": "#6dccdd3f"
+    // "statusBar.background": "#77f"
+  }
 }

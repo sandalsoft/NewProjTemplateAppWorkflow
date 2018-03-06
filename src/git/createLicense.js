@@ -6,7 +6,6 @@ const licenseText = `Copyright (c) ${new Date().getFullYear()} Eric Nelson \nAll
 export const createLicense = (outputPath = './LICENSE.txt') => {
   try {
     fs.writeFileSync(outputPath, licenseText);
-    return '!';
   } catch (err) {
     return new Error(err);
   }

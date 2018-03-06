@@ -2,6 +2,6 @@ import nodeCmd from 'node-cmd';
 import { promisify } from 'util';
 
 const exec = promisify(nodeCmd.get, { multiArgs: true, context: nodeCmd });
-const executeCmd = async cmd => await exec(cmd);
+const executeCmd = async (cmd) => await exec(cmd);
 
-export const gitInit = async () => await executeCmd('git init');
+export const initGitRepo = async () => await executeCmd('git init');

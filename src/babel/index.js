@@ -1,3 +1,3 @@
-import { handleBabelrc } from './handleBabelrc';
+import { createBabelrc } from './createBabelrc';
 
-export { handleBabelrc };
+export { createBabelrc };
