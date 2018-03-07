@@ -18,12 +18,23 @@ return output
 
 
   
-- generator for new component
-  * use yeoman ? or create my own? (my own!)
-  * prompt for name if not supplied on cmdline
-  * mkdir (src/componentName)
-  * create index js file that imports componentn name
-  * creates component.js and exports
+- generator 
+  * new component
+    * prompt for name if not supplied on cmdline
+    * fail if exists, or bail to new function generation
+    * mkdir (src/componentName)
+    * create index js file that imports componentn name
+    * ask (default to Y) if want to continue to function generation (because you probably created)
+  
+  * new function
+    * Ask which compoennt function is part of (Autocomplete list for existing coponents) - Or default to recently created component above 
+    * create funtion-name.js file
+    * import { log, rejectIfMissing, etc } in function-name.js
+    * stub 'const functionName = () => { \n\n\n }'
+    * export functionName at bottom
+    * create function-name.test.js file
+    * add import/export to index.js
+
 
 - create directories
   src
@@ -69,18 +80,20 @@ return output
   ** packages - programatically add these to package.json. other compoentns will call this to add their packages. ie. babel component will call packageJson.addPackage(['babel-core', 'babel-eslint', etc.])
 
   \*\*\*\* look in package.json for deps, peer-deps, and dev-deps. AND look in yarn-link'd folders where those deps aren't automatically installed (like eslint-config)
-  babel-core
-  babel-eslint
-  babel-cli
-  babel-preset-env
-  babel-plugin-transform-object-rest-spread
-  prettyjson
-  eslint
-  jest
-  pretty-error
-  "transform-es2015-spread",
-  "transform-object-rest-spread",
-  "transform-async-to-generator"
+  devDependencies:
+    babel-core
+    babel-eslint
+    babel-cli
+    babel-preset-env
+    babel-plugin-transform-object-rest-spread
+    prettyjson
+    eslint
+    jest
+    pretty-error
+    c8
+    "transform-es2015-spread",
+    "transform-object-rest-spread",
+    "transform-async-to-generator"
 
 ---=[ done ]=-
 

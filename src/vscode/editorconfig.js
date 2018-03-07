@@ -1,12 +1,12 @@
 //https://code.visualstudio.com/docs/getstarted/theme-color-reference
-const workspaceConfig = {
+export const workspaceConfig = {
   'workbench.colorCustomizations': {
     'editor.selectionBackground': '#6dccdd3f'
     // "statusBar.background": "#77f"
   }
 };
 
-const userConfig = {
+export const userConfig = {
   // Place your settings in this file to overwrite the default settings
   // "editor.fontFamily": "Source Code Pro",
   'editor.fontFamily': 'Fira Code',

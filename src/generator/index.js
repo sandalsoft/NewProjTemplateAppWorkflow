@@ -1,4 +1,4 @@
-import { newComponent } from './new-component';
-import { newProject } from './new-project';
+import createComponent from './create-component';
+import { gen } from './gen';
 
-export { newComponent, newProject };
+export { gen, createComponent };
