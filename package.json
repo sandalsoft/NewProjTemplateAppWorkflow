@@ -7,11 +7,11 @@
   "scripts": {
     "pretranspile": "echo 'cleaning /dist' && rm -rf ./dist",
     "transpile":
-      "echo 'Compiling ./src -> ./dist' && babel src --out-dir ./dist  --source-maps -q",
-    "predev": "npm run transpile",
+      "echo 'Compiling ./src -> ./dist' && babel src --out-dir ./dist  --source-maps ",
+    "predev": "yarn run transpile",
     "dev": "node ./dist/index.js",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "jest src",
+    "test:watch": "yarn run test -- --watch"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -23,6 +23,11 @@
     "babel-preset-env": "^1.6.1",
     "eslint": "^4.18.2",
     "eslint-plugin-graphql": "^1.5.0",
+    "eslint-plugin-jest": "^21.13.0",
+    "eslint-plugin-no-loops": "^0.3.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-unicorn": "^4.0.2",
     "jest": "^22.4.2"
   },
   "dependencies": {
@@ -32,6 +37,8 @@
     "node-cmd": "^3.0.0",
     "npm": "^5.7.1",
     "pretty-error": "^2.1.1",
-    "pretty-format": "^22.4.0"
+    "pretty-format": "^22.4.0",
+    "prompts": "^0.1.4",
+    "vorpal": "^1.12.0"
   }
 }

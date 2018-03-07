@@ -12,6 +12,12 @@ return output
   * cmdline script or vscode plugin? Leaning toward cmdline for portability and ease
   * yeoman generator or node script? node script
 
+- service discovery
+  - things like - URLs for eslintrc and gitignore that cli aliases can use to pull latest version
+  - files like .gitignore should be in public, not repo.  find perm URLs or keep serivceDB up to date
+
+
+  
 - generator for new component
   * use yeoman ? or create my own? (my own!)
   * prompt for name if not supplied on cmdline

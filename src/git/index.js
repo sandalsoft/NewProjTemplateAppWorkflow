@@ -1,8 +1,8 @@
-import { setGithubOrigin } from './setGithubOrigin';
-import { createGitignore } from './createGitignore';
-import { initGitRepo } from './initGitRepo';
-import { createGithubRepo } from './createGithubRepo';
-import { createLicense } from './createLicense';
+import { setGithubOrigin } from './set-github-origin';
+import { createGitignore } from './create-gitignore';
+import { initGitRepo } from './init-git-repo';
+import { createGithubRepo } from './create-github-repo';
+import { createLicense } from './create-license';
 
 export {
   setGithubOrigin,

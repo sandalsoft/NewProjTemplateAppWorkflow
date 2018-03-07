@@ -1,15 +1,13 @@
-import nodeCmd from 'node-cmd';
-import { promisify } from 'util';
+import { exec } from '../util';
 
-const exec = promisify(nodeCmd.get, { multiArgs: true, context: nodeCmd });
-const executeCmd = async cmd => await exec(cmd);
-
-const setGithubOrigin = async (username, projectName) =>
-  await executeCmd(
+export const setGithubOrigin = async (username, projectName) =>
+  await exec(
     `git remote set-url origin git@github.com:${username}/${projectName}.git`
   );
 
-export { setGithubOrigin };
+// THIS DOES NOTHING NOW... handled by separate fuctions, but kept for reference
+
+// export { setGithubOrigin };
 
 // const main = async () => {
 //   try {

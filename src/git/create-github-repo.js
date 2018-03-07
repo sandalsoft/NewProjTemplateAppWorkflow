@@ -1,22 +1,17 @@
-import nodeCmd from 'node-cmd';
 import axios from 'axios';
-import { promisify } from 'util';
 
-const exec = promisify(nodeCmd.get, { multiArgs: true, context: nodeCmd });
-const executeCmd = async (cmd) => await exec(cmd);
-
-const removeNewline = (str) => str.slice(0, str.length - 1);
+import { executeCmd, chop } from '../util';
 
 export const createGithubRepo = async () => {
   const githubUserOutput = await executeCmd('(git config github.user)');
-  const githubUser = removeNewline(githubUserOutput);
+  const githubUser = chop(githubUserOutput);
 
   const githubTokenOutput = await executeCmd('(git config github.token)');
-  const githubToken = removeNewline(githubTokenOutput);
+  const githubToken = chop(githubTokenOutput);
 
   // const dirOutput = await executeCmd('basename `pwd`');
   const dirOutput = 'proj\n';
-  const dir = removeNewline(dirOutput);
+  const dir = chop(dirOutput);
 
   const projectName = `${dir}x`;
   const projectDesc = `${projectName} - Could use a little more description`;
