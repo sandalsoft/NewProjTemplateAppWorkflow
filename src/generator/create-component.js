@@ -1,11 +1,13 @@
 import fs from 'fs-extra';
+import path from 'path';
 
 export const createComponent = async ({
   componentName,
   rootDir = process.cwd()
 }) => {
-  const newComponentDir = `${rootDir}/src/${componentName}`;
-  const componentIndexJsFile = `${newComponentDir}/index.js`;
+  // const newComponentDir = `${rootDir}/src/${componentName}`;
+  const newComponentDir = path.join(rootDir, 'src', componentName);
+  const componentIndexJsFile = path.join(newComponentDir, 'index.js');
   const indexJsStub = '//import stuff here\n\n//export stuff here';
 
   try {

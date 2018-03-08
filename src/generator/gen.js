@@ -22,7 +22,6 @@ export const gen = (args) => {
       // options = {"tail" : 100}
       logger.info(args);
       const newCoponentName = args.name;
-      //TODO: Sanitize input for generator to prevent '../etc/passwd' injection
       if (!inputIsValid(newCoponentName)) {
         throw new Error(
           'Stop fucking around with passing shit into my fuctions'

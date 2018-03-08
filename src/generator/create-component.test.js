@@ -1,11 +1,12 @@
 import fs from 'fs-extra';
+import path from 'path';
 
 import { canCreateComponent, createComponent } from '.';
 
 const componentName = 'mirv';
 const projectRootDir =
   '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/generator/dummy_proj_for_generator';
-const componentDir = `${projectRootDir}/src/${componentName}`;
+const componentDir = path.join(projectRootDir, 'src', componentName);
 
 beforeAll(async () => {
   console.log(`Creating ${componentName} in project dir ${projectRootDir}`);

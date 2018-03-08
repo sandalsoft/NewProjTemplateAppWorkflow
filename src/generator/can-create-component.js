@@ -1,9 +1,10 @@
 import fs from 'fs';
+import path from 'path';
 
 export const canCreateComponent = (newComponentName) => {
   return (
     fs.existsSync('./package.json') &&
-    !fs.existsSync(`./src/${newComponentName}`)
+    !fs.existsSync(path.join('src', newComponentName))
   );
 
   // const srcDir = './src';
