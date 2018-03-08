@@ -36,7 +36,6 @@
     "caporal": "^0.10.0",
     "commander": "^2.14.1",
     "global": "^4.3.2",
-    "is-there": "^4.4.3",
     "node-cmd": "^3.0.0",
     "npm": "^5.7.1",
     "pretty-error": "^2.1.1",

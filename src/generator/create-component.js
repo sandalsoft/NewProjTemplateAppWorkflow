@@ -1,5 +1,5 @@
-import IsThere from 'is-there';
+//  3. mkdir src/compnent
+//   4. touch index.js
+//   5. ask if want to create new function
 
-export const createComponent = (name) => {
-  console.log('> %s %s', name, IsThere(name) ? 'exists' : 'doesn\'t exist');
-};
+export const createComponent = (name) => {};

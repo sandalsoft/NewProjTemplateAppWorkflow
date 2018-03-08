@@ -7,7 +7,8 @@ const main = async () => {
     log(chop('lets do this!\n'));
     gen(process.argv);
   } catch (err) {
-    log(new Error(err.stack) || new Error(err));
+    // log(new Error(err.stack) || new Error(err));
+    console.log(err);
   }
 };
 

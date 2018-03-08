@@ -1,5 +1,7 @@
 import prog from 'caporal';
-import createComponent from '.';
+
+import { createComponent } from './create-component';
+import { canCreateComponent } from '.';
 /*
   1. prompt for info
     - project name
@@ -26,11 +28,26 @@ export const gen = (args) => {
     // if --tail is passed, its value is required
     // .option('--tail <lines>', 'Tail <lines> lines of logs after deploy', prog.INT)
     .action(function(args, options, logger) {
-      // args and options are objects
+      // args and options are ds
       // args = {"app": "myapp", "env": "production"}
       // options = {"tail" : 100}
       logger.info(args);
-      createComponent(args.name);
+      const newCoponentName = args.name;
+      try {
+        if (!canCreateComponent(newCoponentName)) {
+          const errorMsg = `Unable to create new component - ${newCoponentName}.
+            \t1. Verify that PROJECT_ROOT/src/${newCoponentName} doesn't already exist.
+            \t2. Verify this is being run from PROJECT_ROOT with existing ./package.json.
+          `;
+          throw new Error(errorMsg);
+        }
+
+        // Let's create this motherfucker!
+        // const d = createComponent(newCoponentName);
+        // console.log(d);
+      } catch (err) {
+        throw new Error(err);
+      }
     });
 
   prog.parse(args);

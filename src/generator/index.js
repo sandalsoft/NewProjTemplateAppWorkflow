@@ -1,4 +1,5 @@
-import createComponent from './create-component';
 import { gen } from './gen';
+import { createComponent } from './create-component';
+import { canCreateComponent } from './can-create-component';
 
-export { gen, createComponent };
+export { gen, createComponent, canCreateComponent };
