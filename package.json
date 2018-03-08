@@ -6,10 +6,11 @@
   "license": "UNLICENSED",
   "scripts": {
     "pretranspile": "echo 'cleaning /dist' && rm -rf ./dist",
-    "transpile": "echo 'Compiling ./src -> ./dist' && babel src --out-dir ./dist  --source-maps ",
-    "predev": "yarn run transpile",
-    "dev": "node ./dist/index.js",
-    "cover": "c8 node ./dist/index.js",
+    "transpile":
+      "echo 'Compiling ./src -> ./dist' && babel src --out-dir ./dist  --source-maps ",
+    "start": "babel-node ./src/index",
+    "cover": "c8 node ./src/index.js",
+    "jest": "jest ./src",
     "test": "jest src",
     "test:watch": "yarn run test -- --watch"
   },

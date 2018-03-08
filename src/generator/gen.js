@@ -20,15 +20,15 @@ export const gen = (args) => {
       // args and options are ds
       // args = {"app": "myapp", "env": "production"}
       // options = {"tail" : 100}
-
+      logger.info(args);
+      const newCoponentName = args.name;
       //TODO: Sanitize input for generator to prevent '../etc/passwd' injection
-      if (!inputIsValid(args)) {
+      if (!inputIsValid(newCoponentName)) {
         throw new Error(
           'Stop fucking around with passing shit into my fuctions'
         );
       }
-      logger.info(args);
-      const newCoponentName = args.name;
+
       try {
         if (!canCreateComponent(newCoponentName)) {
           const errorMsg = `Unable to create new component - ${newCoponentName}.
@@ -38,8 +38,8 @@ export const gen = (args) => {
           throw new Error(errorMsg);
         }
 
-        // Let's create this motherfucker!
-        createComponent(newCoponentName);
+        console.log('Lets create this motherfucker!: ', newCoponentName);
+        createComponent({ componentName: newCoponentName });
       } catch (err) {
         throw new Error(err);
       }
