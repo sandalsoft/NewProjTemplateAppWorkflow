@@ -23,7 +23,8 @@
     "plugin:unicorn/recommended"
   ],
   "rules": {
-    "no-console": 0,
+    "no-unused-vars": "warn",
+    "no-console": "off",
     "quotes": ["error", "single"],
     "semi": ["warn", "always"],
     "no-debugger": "warn",
@@ -31,7 +32,7 @@
     "no-param-reassign": "error",
     "no-undef": "error",
     "no-trailing-spaces": "warn",
-    "eol-last": 0,
+    "eol-last": "off",
     "no-underscore-dangle": "warn",
     "no-alert": "error",
     "no-lone-blocks": "warn",
@@ -39,6 +40,6 @@
     "no-loops/no-loops": "error",
     "promise/prefer-await-to-then": "error",
     "promise/prefer-await-to-callbacks": "error",
-    "security/detect-non-literal-fs-filename": 0
+    "security/detect-non-literal-fs-filename": "off"
   }
 }

@@ -20,6 +20,8 @@ export const gen = (args) => {
       // args and options are ds
       // args = {"app": "myapp", "env": "production"}
       // options = {"tail" : 100}
+
+      //TODO: validate current dir is project dir. Create util/isProjectDir or something
       logger.info(args);
       const newCoponentName = args.name;
       if (!inputIsValid(newCoponentName)) {

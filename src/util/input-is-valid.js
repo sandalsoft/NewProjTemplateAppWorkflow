@@ -1,5 +1,5 @@
-import isAlphanumeric from 'validator/lib/isAlphanumeric';
+import isAlpha from 'validator/lib/isAlpha';
 
 export const inputIsValid = (input) => {
-  return isAlphanumeric(input);
+  return isAlpha(input.charAt(0));
 };

@@ -1,5 +1,6 @@
 import fs from 'fs-extra';
 import path from 'path';
+import { log } from '../util';
 
 import { canCreateComponent, createComponent } from '.';
 
@@ -9,7 +10,7 @@ const projectRootDir =
 const componentDir = path.join(projectRootDir, 'src', componentName);
 
 beforeAll(async () => {
-  console.log(`Creating ${componentName} in project dir ${projectRootDir}`);
+  log('Setting up tests.');
   if (canCreateComponent(componentName)) {
     try {
       await createComponent({
@@ -29,27 +30,29 @@ afterAll(() => {
   console.log(`Removing ${componentDir}`);
   try {
     fs.removeSync(componentDir);
-    console.log('Done');
   } catch (err) {
     console.error(err.stack || err);
   }
 });
 
-test('Creates component directory', async () => {
-  const actual = true;
+describe('Creating component...', () => {
+  test('directory is created', () => {
+    expect.assertions(1);
+    const actual = true;
 
-  const expected = fs.existsSync(componentDir);
-  expect(actual).toEqual(expected);
-});
-
-test('index.js exists with stub comments', async () => {
-  const expectedIndexStr = '//import stuff here\n\n//export stuff here';
-  const actual = true;
-
-  const fileContent = fs.readFileSync(`${componentDir}/index.js`, {
-    encoding: 'utf8'
+    const expected = fs.existsSync(componentDir);
+    expect(actual).toEqual(expected);
   });
-  console.log(fileContent);
-  const expected = fileContent === expectedIndexStr;
-  expect(actual).toEqual(expected);
+
+  test('index.js exists with stub comments', () => {
+    expect.assertions(1);
+    const expectedIndexJsData = '//import stuff here\n\n//export stuff here';
+    const actual = true;
+
+    const fileContent = fs.readFileSync(path.join(componentDir, 'index.js'), {
+      encoding: 'utf8'
+    });
+    const expected = fileContent === expectedIndexJsData;
+    expect(actual).toEqual(expected);
+  });
 });

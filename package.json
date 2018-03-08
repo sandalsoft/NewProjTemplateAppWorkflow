@@ -6,11 +6,10 @@
   "license": "UNLICENSED",
   "scripts": {
     "pretranspile": "echo 'cleaning /dist' && rm -rf ./dist",
-    "transpile":
-      "echo 'Compiling ./src -> ./dist' && babel src --out-dir ./dist  --source-maps ",
+    "transpile": "echo 'Compiling ./src -> ./dist' && babel src --out-dir ./dist  --source-maps ",
     "start": "babel-node ./src/index",
-    "cover": "c8 node ./src/index.js",
-    "jest": "jest ./src",
+    "precover": "yarn run transpile",
+    "cover": "c8 node ./dist/index.js",
     "test": "jest src",
     "test:watch": "yarn run test -- --watch"
   },
@@ -30,7 +29,8 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-unicorn": "^4.0.2",
-    "jest": "^22.4.2"
+    "jest": "^22.4.2",
+    "xxhash": "^0.2.4"
   },
   "dependencies": {
     "axios": "^0.18.0",
