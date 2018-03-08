@@ -12,7 +12,6 @@ export const gitignore = async (projectName) => {
   try {
     const gitignoreRes = await axios(gitignoreURL);
     const gitignoreData = gitignoreRes.data;
-    // eslint-disable-next-line security/detect-non-literal-fs-filename
     fs.writeFileSync(gitignoreFile, gitignoreData);
 
     //TODO: Cleanup the return value.  Return path of file, size in bites, status object?

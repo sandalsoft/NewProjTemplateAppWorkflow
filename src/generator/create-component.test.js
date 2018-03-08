@@ -1,6 +1,9 @@
 import { createComponent } from '.';
 
-test('Creates component', () => {
-  // const result = createComponent('/dev/null');
-  // expect(result.status).toBe('success');
+test('Creates component', async () => {
+  const expected = false;
+  const actual = true;
+
+  createComponent();
+  expect(actual).toEqual(expected);
 });

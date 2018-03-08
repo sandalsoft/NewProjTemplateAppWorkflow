@@ -3,7 +3,6 @@ import fs from 'fs';
 export const canCreateComponent = (newComponentName) => {
   return (
     fs.existsSync('./package.json') &&
-    // eslint-disable-next-line security/detect-non-literal-fs-filename
     !fs.existsSync(`./src/${newComponentName}`)
   );
 
@@ -16,14 +15,12 @@ export const canCreateComponent = (newComponentName) => {
   // console.log(`process.cwd(): ${JSON.stringify(process.cwd())}`);
   // const packageJsonFile = `${srcDir}/../package.json`;
   // console.log(`packageJsonFile: ${JSON.stringify(packageJsonFile)}`);
-  // // eslint-disable-next-line security/detect-non-literal-fs-filename
   // const doesPackageJsonExist = fs.existsSync(packageJsonFile);
   // console.log(`doesPackageJsonExist: ${JSON.stringify(doesPackageJsonExist)}`);
 
   // // check if component already exists
   // const componentDir = `${srcDir}/${newComponentName}`;
   // console.log(`componentDir: ${JSON.stringify(componentDir)}`);
-  // // eslint-disable-next-line security/detect-non-literal-fs-filename
   // const doesComponentDirExist = !fs.existsSync(componentDir);
   // console.log(
   //   `doesComponentDirExist: ${JSON.stringify(doesComponentDirExist)}`

@@ -10,7 +10,6 @@ export const createBabelrc = async (projectName = rejectifMissing()) => {
   try {
     const response = await axios(babelrcURL);
     const babelrcData = response.data;
-    // eslint-disable-next-line security/detect-non-literal-fs-filename
     fs.writeFileSync(babelrcFile, JSON.stringify(babelrcData));
     return { status: 'success' };
   } catch (err) {

@@ -1,18 +1,11 @@
 import prog from 'caporal';
 
-import { createComponent } from './create-component';
-import { canCreateComponent } from '.';
-/*
-  1. prompt for info
-    - project name
-  2. check if directory exists
-  2a. if so, check for files
-  2b. if so, bail
+import { canCreateComponent, createComponent } from '.';
+import { doesStringContainList } from '../util';
 
-  3. mkdir src/compnent
-  4. touch index.js
-  5. ask if want to create new function
-*/
+const isInputClean = (input) => {
+  !doesStringContainList(['.', '/'], input);
+};
 
 export const gen = (args) => {
   prog
@@ -31,6 +24,13 @@ export const gen = (args) => {
       // args and options are ds
       // args = {"app": "myapp", "env": "production"}
       // options = {"tail" : 100}
+
+      //TODO:s
+      // if (!isInputClean(args)) {
+      //   throw new Error(
+      //     'Stop fucking around with passing shit into my fuctions'
+      //   );
+      // }
       logger.info(args);
       const newCoponentName = args.name;
       try {
@@ -43,8 +43,7 @@ export const gen = (args) => {
         }
 
         // Let's create this motherfucker!
-        // const d = createComponent(newCoponentName);
-        // console.log(d);
+        createComponent(newCoponentName);
       } catch (err) {
         throw new Error(err);
       }

@@ -38,6 +38,7 @@
     "arrow-parens": "error",
     "no-loops/no-loops": "error",
     "promise/prefer-await-to-then": "error",
-    "promise/prefer-await-to-callbacks": "error"
+    "promise/prefer-await-to-callbacks": "error",
+    "security/detect-non-literal-fs-filename": 0
   }
 }
