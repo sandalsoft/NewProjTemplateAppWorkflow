@@ -1,11 +1,7 @@
 import prog from 'caporal';
 
 import { canCreateComponent, createComponent } from '.';
-import { doesStringContainList } from '../util';
-
-const isInputClean = (input) => {
-  !doesStringContainList(['.', '/'], input);
-};
+import { inputIsValid } from '../util';
 
 export const gen = (args) => {
   prog
@@ -25,12 +21,12 @@ export const gen = (args) => {
       // args = {"app": "myapp", "env": "production"}
       // options = {"tail" : 100}
 
-      //TODO:s
-      // if (!isInputClean(args)) {
-      //   throw new Error(
-      //     'Stop fucking around with passing shit into my fuctions'
-      //   );
-      // }
+      //TODO: Sanitize input for generator to prevent '../etc/passwd' injection
+      if (!inputIsValid(args)) {
+        throw new Error(
+          'Stop fucking around with passing shit into my fuctions'
+        );
+      }
       logger.info(args);
       const newCoponentName = args.name;
       try {

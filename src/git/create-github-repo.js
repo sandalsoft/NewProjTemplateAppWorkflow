@@ -9,7 +9,7 @@ export const createGithubRepo = async () => {
   const githubTokenOutput = await executeCmd('(git config github.token)');
   const githubToken = chop(githubTokenOutput);
 
-  //FIXME: this shit is whack
+  //FIXME: Change back to basename('pwd') for production
   // const dirOutput = await executeCmd('basename `pwd`');
   const dirOutput = 'proj\n';
   const dir = chop(dirOutput);
