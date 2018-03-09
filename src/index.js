@@ -1,6 +1,7 @@
 // import { setGithubOrigin, gitInit, gitignore, createGithubRepo } from './git';
 import { gen } from './generator';
 import { log, chop } from './util';
+import { cli } from './cli/cli';
 
 const main = async () => {
   try {
