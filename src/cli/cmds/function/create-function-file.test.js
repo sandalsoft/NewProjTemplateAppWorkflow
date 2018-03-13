@@ -36,7 +36,8 @@ describe('create file ', () => {
   test('file is created with proper text:', () => {
     createFunctionFile({
       functionName: functionName,
-      componentPath: componentPath
+      componentPath: componentPath,
+      fileContent: fileText
     });
 
     const fileContent = fs.readFileSync(filePath, {
@@ -44,7 +45,8 @@ describe('create file ', () => {
     });
 
     const expected = true;
-    const actual = fileContent.includes(fileText);
+    const actual =
+      fileContent.includes(fileText) && fileContent.includes('export const');
 
     expect(actual).toEqual(expected);
   });
