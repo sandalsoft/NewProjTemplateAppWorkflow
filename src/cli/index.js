@@ -1,2 +1,2 @@
-import { functionPrompt } from './cmds/function/function-prompt';
+import { functionPrompt } from './function/function-prompt';
 export { functionPrompt };

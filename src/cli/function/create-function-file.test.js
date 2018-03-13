@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import changeCase from 'change-case';
 
 import { createFunctionFile } from './create-function-file';
-import Config from '../../../../config';
+import Config from '../../../config';
 
 const projectRootDir =
   '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/cli/dummy_proj_for_cli';

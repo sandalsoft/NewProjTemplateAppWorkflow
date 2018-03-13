@@ -1,7 +1,7 @@
 import path from 'path';
 import changeCase from 'change-case';
 
-import Config from '../../../../config';
+import Config from '../../../config';
 import { createFile } from './create-file';
 
 export const createFunctionFile = ({ functionName, componentPath }) => {
