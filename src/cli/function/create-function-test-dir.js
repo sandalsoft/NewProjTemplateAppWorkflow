@@ -1,8 +1,9 @@
-import fs from 'fs-extra';
 import path from 'path';
 
 import { getFunctionTestDir } from './get-function-test-dir';
-import getProjectRootDir from '../../util/get-project-root-dir';
+
+import { createDirectory } from '../../util/side-effects';
+import { getProjectRootDir } from '../../util/get-project-root-dir';
 ///Users/enelson/Development/NewProjTemplateAppWorkflow/test/cli/dummy_proj_for_cli/src/cli/functionName
 
 export const createFunctionTestDir = async ({
@@ -15,9 +16,7 @@ export const createFunctionTestDir = async ({
   });
 
   try {
-    fs.mkdirpSync(testDir);
-    console.log('------------ should retrun true soon');
-    return true;
+    return await createDirectory(testDir);
   } catch (err) {
     return Promise.reject(err);
   }

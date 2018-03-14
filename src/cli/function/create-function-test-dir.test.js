@@ -1,9 +1,9 @@
-import fs from 'fs-extra';
 import path from 'path';
 
 import { getProjectRootDir } from '../../util/get-project-root-dir';
 import { createFunctionTestDir } from './create-function-test-dir';
 import { getFunctionTestDir } from './get-function-test-dir';
+import { removeFile } from '../../util/side-effects';
 
 const testingRootDir = path.join(getProjectRootDir(), 'test');
 const componentName = 'test_cli';
@@ -14,7 +14,7 @@ beforeEach(() => {
 
 afterEach(() => {
   try {
-    fs.removeSync(
+    removeFile(
       getFunctionTestDir({
         componentName: componentName,
         testingRootDir: testingRootDir

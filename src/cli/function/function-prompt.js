@@ -1,7 +1,7 @@
 import prompts from 'prompts';
-import fs from 'fs-extra';
 import path from 'path';
 
+import { directoryList, isDirectory } from '../../util/side-effects';
 export const functionPrompt = async ({
   srcDir = process.cwd(),
   answers = undefined
@@ -9,11 +9,9 @@ export const functionPrompt = async ({
   // If answers are supplied for testing, inject them into prompts
   answers && prompts.inject(answers);
 
-  const componentList = fs
-    // get directory listing of all files and directories in srcDir
-    .readdirSync(srcDir)
+  const componentList = directoryList(srcDir)
     // filter out non-directories
-    .filter((file) => fs.statSync(path.join(srcDir, file)).isDirectory())
+    .filter((file) => directoryList(path.join(srcDir, file)))
     // return each directory as an object that prompts can understand
     .map((directory) => ({ title: directory, value: directory }));
   const questions = [

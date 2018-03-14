@@ -1,6 +1,6 @@
-import fs from 'fs-extra';
 import path from 'path';
 
+import { createDirectory, writefile } from '../util/side-effects';
 export const createComponent = async ({
   componentName,
   rootDir = process.cwd()
@@ -10,8 +10,8 @@ export const createComponent = async ({
   const indexJsStub = '//import stuff here\n\n//export stuff here';
 
   try {
-    await fs.mkdir(newComponentDir);
-    await fs.outputFile(componentIndexJsFile, indexJsStub);
+    await createDirectory(newComponentDir);
+    await writefile(componentIndexJsFile, indexJsStub);
   } catch (err) {
     return Promise.reject(err);
   }

@@ -1,4 +1,3 @@
-// import fs from 'fs-extra';
 // import path from 'path';
 
 import { functionPrompt } from './function-prompt';
@@ -11,13 +10,8 @@ import { functionPrompt } from './function-prompt';
 // const projectRootDir =
 //   '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/cli/dummy_proj_for_cli';
 
-// const componentList = fs
-//   .readdirSync(projectRootDir)
-//   .filter((file) => fs.statSync(path.join(projectRootDir, file)).isDirectory())
-//   .map((component) => ({ title: component, value: component }));
-
 test('passing proper srcDir returns proper directories', async () => {
-  const expected = { name: 'testFunc', component: 'babels' };
+  const expected = { name: 'testFunc', component: 'babel' };
 
   const actual = await functionPrompt({ answers: expected });
   expect(actual).toEqual(expected);

@@ -1,7 +1,7 @@
-import fs from 'fs-extra';
 import path from 'path';
-import { log } from '../util';
 
+import { log } from '../util';
+import { removeFile, readFile, fileExists } from '../util/side-effects';
 import { canCreateComponent, createComponent } from '.';
 
 const componentName = 'mirv';
@@ -29,7 +29,7 @@ beforeAll(async () => {
 afterAll(() => {
   console.log(`Removing ${componentDir}`);
   try {
-    fs.removeSync(componentDir);
+    removeFile(componentDir);
   } catch (err) {
     console.error(err.stack || err);
   }
@@ -40,7 +40,7 @@ describe('Creating component...', () => {
     expect.assertions(1);
     const actual = true;
 
-    const expected = fs.existsSync(componentDir);
+    const expected = fileExists(componentDir);
     expect(actual).toEqual(expected);
   });
 
@@ -49,9 +49,7 @@ describe('Creating component...', () => {
     const expectedIndexJsData = '//import stuff here\n\n//export stuff here';
     const actual = true;
 
-    const fileContent = fs.readFileSync(path.join(componentDir, 'index.js'), {
-      encoding: 'utf8'
-    });
+    const fileContent = readFile(path.join(componentDir, 'index.js'));
     const expected = fileContent === expectedIndexJsData;
     expect(actual).toEqual(expected);
   });

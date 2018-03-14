@@ -1,7 +1,7 @@
 import path from 'path';
-import fs from 'fs-extra';
 import changeCase from 'change-case';
 
+import { removeFile, readfile } from '../../util/side-effects';
 import { createFunctionFile } from './create-function-file';
 import Config from '../../../config';
 
@@ -11,43 +11,33 @@ const projectRootDir =
 const functionName = 'takeDump';
 const componentName = 'babel';
 const componentPath = path.join(projectRootDir, 'src', componentName);
+console.log(`componentPath: ${JSON.stringify(componentPath)}`);
 const fileName = `${changeCase.paramCase(functionName)}.js`;
-const fileText = Config.cli.functionText(functionName);
+const fileData = Config.cli.functionText(functionName);
 const filePath = path.join(componentPath, fileName);
 
 afterEach(() => {
   try {
-    fs.removeSync(filePath);
+    removeFile(filePath);
   } catch (err) {
     console.error(err.stack || err);
   }
 });
 
-describe('create file ', () => {
-  test('should not throw:', () => {
-    expect(function() {
-      createFunctionFile({
-        functionName: functionName,
-        componentPath: componentPath
-      });
-    }).not.toThrow();
-  });
+test('should not throw:', () => {
+  expect(function() {
+    createFunctionFile(functionName, componentPath, fileData);
+  }).not.toThrow();
+});
 
-  test('file is created with proper text:', () => {
-    createFunctionFile({
-      functionName: functionName,
-      componentPath: componentPath,
-      fileContent: fileText
-    });
+test('file is created with proper text:', () => {
+  createFunctionFile(functionName, componentPath, fileData);
 
-    const fileContent = fs.readFileSync(filePath, {
-      encoding: 'utf8'
-    });
+  const dataFromFile = readfile(filePath);
 
-    const expected = true;
-    const actual =
-      fileContent.includes(fileText) && fileContent.includes('export const');
+  const expected = true;
+  const actual =
+    dataFromFile.includes(fileData) && dataFromFile.includes('export const');
 
-    expect(actual).toEqual(expected);
-  });
+  expect(actual).toEqual(expected);
 });

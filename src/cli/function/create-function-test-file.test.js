@@ -1,7 +1,7 @@
 import path from 'path';
-import fs from 'fs-extra';
 import changeCase from 'change-case';
 
+import { removeFile, readFile } from '../../util/side-effects';
 import { createFunctionTestFile } from './create-function-test-file';
 import Config from '../../../config';
 
@@ -20,7 +20,7 @@ const filePath = path.join(testComponentPath, fileName);
 
 afterEach(() => {
   try {
-    fs.removeSync(filePath);
+    removeFile(filePath);
   } catch (err) {
     console.error(err.stack || err);
   }
@@ -43,9 +43,7 @@ test('file is created with proper text:', () => {
     fileContent: fileText
   });
 
-  const fileContent = fs.readFileSync(filePath, {
-    encoding: 'utf8'
-  });
+  const fileContent = readFile(filePath);
 
   const expected = true;
   const actual = fileContent.includes(fileText); //&& fileContent.includes('beforeEach');

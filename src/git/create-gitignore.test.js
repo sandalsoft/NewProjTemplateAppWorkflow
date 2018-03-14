@@ -1,6 +1,6 @@
 import path from 'path';
-import fs from 'fs-extra';
 
+import { removeFile, readFile } from '../util/side-effects';
 import { createGitIgnore } from './create-gitignore';
 import { log, isValidProjectDir } from '../util';
 
@@ -16,8 +16,9 @@ afterAll(() => {
   console.log('Tearing down tests');
   try {
     const projDir = path.dirname(gitignoreFile);
+
     if (isValidProjectDir(projDir)) {
-      fs.removeSync(gitignoreFile);
+      removeFile(gitignoreFile);
     } else {
       console.log('No .gitignore file to tear down');
       console.log(`gitignoreFile: ${gitignoreFile}`);
@@ -33,9 +34,7 @@ test('.gitignore is downloaded and written properly', async () => {
 
   await createGitIgnore(projectRootDir);
 
-  const fileContent = fs.readFileSync(gitignoreFile, {
-    encoding: 'utf8'
-  });
+  const fileContent = readFile(gitignoreFile);
 
   const expected = fileContent.includes('IF YOU CAN READ THIS, YOU\'RE DEAD');
 

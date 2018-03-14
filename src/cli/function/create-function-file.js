@@ -1,17 +1,30 @@
 import path from 'path';
 import changeCase from 'change-case';
 
-import Config from '../../../config';
-import { createFile } from './create-file';
+import { writefile, fileExists } from '../../util/side-effects';
 
-export const createFunctionFile = ({ functionName, componentPath }) => {
-  const fileName = changeCase.paramCase(functionName);
-  const filePath = path.join(componentPath, `${fileName}.js`);
-  const fileText = Config.cli.functionText(functionName);
+export const createFunctionFile = ({
+  functionName,
+  componentPath,
+  fileData
+}) => {
+  console.log(`componentPath: ${JSON.stringify(componentPath)}`);
+  const fileName = `${changeCase.paramCase(functionName)}.js`;
+  console.log(`fileName: ${JSON.stringify(fileName)}`);
+  const filePath = path.join(componentPath, fileName);
 
-  console.log(`filePath: ${JSON.stringify(filePath)}`);
+  !fileExists(componentPath) &&
+    (() => {
+      throw new Error(`${componentPath} does not exist.`);
+    });
+
+  fileExists(filePath) &&
+    (() => {
+      throw new Error(`${filePath} already exists.`);
+    });
+
   try {
-    createFile({ filePath: filePath, fileText: fileText });
+    writefile(filePath, fileData);
   } catch (err) {
     throw new Error(err);
   }
