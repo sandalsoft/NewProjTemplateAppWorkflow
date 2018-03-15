@@ -14,13 +14,22 @@
     "node": true,
     "mocha": true
   },
-  "plugins": ["no-loops", "promise", "security", "jest", "unicorn"],
+  "plugins": [
+    "no-loops",
+    "promise",
+    "security",
+    "jest",
+    "unicorn",
+    "cleanjs",
+    "const-immutable"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:promise/recommended",
     "plugin:security/recommended",
     "plugin:jest/recommended",
-    "plugin:unicorn/recommended"
+    "plugin:unicorn/recommended",
+    "cleanjs"
   ],
   "rules": {
     "no-unused-vars": "warn",
@@ -40,6 +49,10 @@
     "no-loops/no-loops": "error",
     "promise/prefer-await-to-then": "error",
     "promise/prefer-await-to-callbacks": "error",
-    "security/detect-non-literal-fs-filename": "off"
+    "security/detect-non-literal-fs-filename": "off",
+    "const-immutable/no-mutation": "error",
+    "fp/no-throw": "off",
+    "better/no-new": "off",
+    "fp/no-nil": "off"
   }
 }

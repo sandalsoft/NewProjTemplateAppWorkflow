@@ -1,3 +1,7 @@
+
+# Don't lint testfile because too many red squiggles.
+# Not an ideal situation, meh
+**/*.test.js
 #
 ##
 #   This is created by cat .gitgnore > .exlintignore
