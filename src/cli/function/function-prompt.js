@@ -1,7 +1,7 @@
 import prompts from 'prompts';
 import path from 'path';
 
-import { directoryList, isDirectory } from '../../util/side-effects';
+import { directoryList } from '../../util/side-effects';
 export const functionPrompt = async ({
   srcDir = process.cwd(),
   answers = undefined

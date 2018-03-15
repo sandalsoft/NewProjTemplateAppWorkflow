@@ -1,8 +1,8 @@
 // Import checker - NOT WORKING, but that's probably ok
 // import { log } from '../util';
 
-const boo = require('util');
-console.log(boo);
+// const boo = require('util');
+// console.log(boo);
 
 // const books = ['gat', 'hieaf'];
 // for (let i = 0; i < books.length; i++) {
