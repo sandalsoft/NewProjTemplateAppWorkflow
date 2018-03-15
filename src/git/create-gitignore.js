@@ -19,7 +19,7 @@ export const createGitIgnore = async (projectDir = getProjectRootDir()) => {
 
   try {
     const gitignoreData = await fetchData(gitignoreURL);
-    createFile(gitignoreFile, gitignoreData);
+    createFile({ filePath: gitignoreFile, fileText: gitignoreData });
     return true;
   } catch (err) {
     return Promise.reject(err);

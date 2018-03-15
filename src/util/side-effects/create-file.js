@@ -16,7 +16,7 @@ export const createFile = ({ filePath, fileText }) => {
     });
 
   try {
-    writeFile(filePath, fileText);
+    writeFile({ filePath: filePath, fileData: fileText });
     return true;
   } catch (err) {
     throw new Error(err);

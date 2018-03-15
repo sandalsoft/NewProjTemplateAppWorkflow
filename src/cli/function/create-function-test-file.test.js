@@ -43,7 +43,7 @@ test('file is created with proper text:', () => {
     fileContent: fileText
   });
 
-  const fileContent = readFile(filePath);
+  const fileContent = readFile({ filePath });
 
   const expected = true;
   const actual = fileContent.includes(fileText); //&& fileContent.includes('beforeEach');

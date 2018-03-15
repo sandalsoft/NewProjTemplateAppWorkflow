@@ -1,13 +1,9 @@
 import path from 'path';
 import changeCase from 'change-case';
 
-import { writefile, fileExists } from '../../util/side-effects';
+import { writeFile, fileExists } from '../../util/side-effects';
 
-export const createFunctionFile = ({
-  functionName,
-  componentPath,
-  fileData
-}) => {
+export const createFunctionFile = (functionName, componentPath, fileData) => {
   console.log(`componentPath: ${JSON.stringify(componentPath)}`);
   const fileName = `${changeCase.paramCase(functionName)}.js`;
   console.log(`fileName: ${JSON.stringify(fileName)}`);
@@ -24,7 +20,9 @@ export const createFunctionFile = ({
     });
 
   try {
-    writefile(filePath, fileData);
+    console.log(`filePath: ${JSON.stringify(filePath)}`);
+    console.log(`fileData: ${JSON.stringify(fileData)}`);
+    writeFile({ filePath, fileData });
   } catch (err) {
     throw new Error(err);
   }

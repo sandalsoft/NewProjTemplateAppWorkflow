@@ -53,6 +53,8 @@
     "const-immutable/no-mutation": "error",
     "fp/no-throw": "off",
     "better/no-new": "off",
-    "fp/no-nil": "off"
+    "fp/no-nil": "off",
+    "fp/no-unused-expression": "off",
+    "better/explicit-return": "off"
   }
 }

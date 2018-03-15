@@ -34,8 +34,7 @@ test('.gitignore is downloaded and written properly', async () => {
 
   await createGitIgnore(projectRootDir);
 
-  const fileContent = readFile(gitignoreFile);
-
+  const fileContent = readFile({ filePath: gitignoreFile });
   const expected = fileContent.includes('IF YOU CAN READ THIS, YOU\'RE DEAD');
 
   expect(actual).toEqual(expected);

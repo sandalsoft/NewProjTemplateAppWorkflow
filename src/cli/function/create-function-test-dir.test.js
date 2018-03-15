@@ -32,8 +32,6 @@ test('test directory is created without error', async () => {
     componentName: componentName,
     testingRootDir: testingRootDir
   });
-
-  console.log(`actual: ${JSON.stringify(actual)}`);
   const expected = true;
   expect(actual).toEqual(expected);
 });

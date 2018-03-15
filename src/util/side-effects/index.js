@@ -5,6 +5,8 @@ import { fileExists } from './file-exists';
 import { writeFile } from './write-file';
 import { isDirectory } from './is-directory';
 import { directoryList } from './directory-list';
+import { fetchData } from './fetch-data';
+import { createFile } from './create-file';
 
 export {
   createDirectory,
@@ -13,5 +15,7 @@ export {
   fileExists,
   writeFile,
   isDirectory,
-  directoryList
+  directoryList,
+  fetchData,
+  createFile
 };

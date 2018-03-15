@@ -1,7 +1,7 @@
 import path from 'path';
 import changeCase from 'change-case';
 
-import { removeFile, readfile } from '../../util/side-effects';
+import { removeFile, readFile } from '../../util/side-effects';
 import { createFunctionFile } from './create-function-file';
 import Config from '../../../config';
 
@@ -11,7 +11,6 @@ const projectRootDir =
 const functionName = 'takeDump';
 const componentName = 'babel';
 const componentPath = path.join(projectRootDir, 'src', componentName);
-console.log(`componentPath: ${JSON.stringify(componentPath)}`);
 const fileName = `${changeCase.paramCase(functionName)}.js`;
 const fileData = Config.cli.functionText(functionName);
 const filePath = path.join(componentPath, fileName);
@@ -33,7 +32,7 @@ test('should not throw:', () => {
 test('file is created with proper text:', () => {
   createFunctionFile(functionName, componentPath, fileData);
 
-  const dataFromFile = readfile(filePath);
+  const dataFromFile = readFile({ filePath: filePath });
 
   const expected = true;
   const actual =
