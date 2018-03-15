@@ -1,19 +1,18 @@
 import path from 'path';
 import changeCase from 'change-case';
 
-import { createFile } from '../../util/side-effects';
+import { writeFile } from '../../util/side-effects';
 
 export const createFunctionTestFile = ({
   functionName,
   testComponentPath,
-  fileContent
+  fileData
 }) => {
   const fileName = `${changeCase.paramCase(functionName)}.test.js`;
   const filePath = path.join(testComponentPath, fileName);
-  const fileText = fileContent;
 
   try {
-    return createFile({ filePath, fileText });
+    return writeFile({ filePath, fileData });
   } catch (err) {
     throw new Error(err);
   }

@@ -1,5 +1,5 @@
 import path from 'path';
-import { fetchData, createFile } from '../util/side-effects';
+import { fetchData, writeFile } from '../util/side-effects';
 import { rejectifMissing } from '../util';
 
 const babelrcURL =
@@ -9,7 +9,7 @@ export const createBabelrc = async (projectName = rejectifMissing()) => {
   const babelrcFile = path.join(projectName, '.babelrc');
   try {
     const babelrcData = await fetchData(babelrcURL);
-    createFile(babelrcFile, JSON.stringify(babelrcData));
+    writeFile(babelrcFile, JSON.stringify(babelrcData));
     return { status: 'success' };
   } catch (err) {
     return Promise.reject(err);

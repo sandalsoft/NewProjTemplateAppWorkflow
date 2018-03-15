@@ -13,15 +13,13 @@ beforeAll(() => {
 });
 
 afterAll(() => {
-  console.log('Tearing down tests');
   try {
     const projDir = path.dirname(gitignoreFile);
 
     if (isValidProjectDir(projDir)) {
       removeFile(gitignoreFile);
     } else {
-      console.log('No .gitignore file to tear down');
-      console.log(`gitignoreFile: ${gitignoreFile}`);
+      console.log(`No .gitignore file to tear down: ${gitignoreFile}`);
     }
   } catch (err) {
     console.error(err.stack || err);
@@ -32,8 +30,7 @@ test('.gitignore is downloaded and written properly', async () => {
   expect.assertions(1);
   const actual = true;
 
-  await createGitIgnore(projectRootDir);
-
+  const isSuccessful = await createGitIgnore(projectRootDir);
   const fileContent = readFile({ filePath: gitignoreFile });
   const expected = fileContent.includes('IF YOU CAN READ THIS, YOU\'RE DEAD');
 

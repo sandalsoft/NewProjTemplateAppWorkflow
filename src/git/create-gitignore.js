@@ -1,7 +1,7 @@
 import path from 'path';
 
 import { isValidProjectDir, getProjectRootDir } from '../util';
-import { createFile, fetchData } from '../util/side-effects';
+import { writeFile, fetchData } from '../util/side-effects';
 
 //TODO: move URL to config.js
 const gitignoreURL =
@@ -19,8 +19,7 @@ export const createGitIgnore = async (projectDir = getProjectRootDir()) => {
 
   try {
     const gitignoreData = await fetchData(gitignoreURL);
-    createFile({ filePath: gitignoreFile, fileText: gitignoreData });
-    return true;
+    return writeFile({ filePath: gitignoreFile, fileData: gitignoreData });
   } catch (err) {
     return Promise.reject(err);
   }

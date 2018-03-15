@@ -11,12 +11,13 @@ const dummyProjectRootDir =
 const functionName = 'takeDump';
 const componentName = 'babel';
 const testComponentPath = path.join(dummyProjectRootDir, 'src', componentName);
-const fileName = `${changeCase.paramCase(functionName)}.test.js`;
-const fileText = Config.cli.testText({
+const testFileName = `${changeCase.paramCase(functionName)}.test.js`;
+const fileData = Config.cli.testText({
   functionName: functionName,
-  testFileName: fileName
+  testFileName: testFileName
 });
-const filePath = path.join(testComponentPath, fileName);
+
+const filePath = path.join(testComponentPath, testFileName);
 
 afterEach(() => {
   try {
@@ -29,24 +30,23 @@ afterEach(() => {
 test('should not throw:', () => {
   expect(function() {
     createFunctionTestFile({
-      functionName: functionName,
-      testComponentPath: testComponentPath,
-      fileContent: fileText
+      functionName,
+      testComponentPath,
+      fileData
     });
   }).not.toThrow();
 });
 
 test('file is created with proper text:', () => {
-  createFunctionTestFile({
-    functionName: functionName,
-    testComponentPath: testComponentPath,
-    fileContent: fileText
+  const isSuccessful = createFunctionTestFile({
+    functionName,
+    testComponentPath,
+    fileData
   });
 
-  const fileContent = readFile({ filePath });
-
+  const actualFileData = readFile({ filePath });
   const expected = true;
-  const actual = fileContent.includes(fileText); //&& fileContent.includes('beforeEach');
+  const actual = actualFileData.includes(fileData); //&& fileData.includes('beforeEach');
 
   expect(actual).toEqual(expected);
 });
