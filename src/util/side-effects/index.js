@@ -7,7 +7,6 @@ import { isDirectory } from './is-directory';
 import { directoryList } from './directory-list';
 import { fetchData } from './fetch-data';
 import { createFile } from './create-file';
-import { transformFile } from './transform';
 
 export {
   createDirectory,
@@ -18,6 +17,5 @@ export {
   isDirectory,
   directoryList,
   fetchData,
-  createFile,
-  transformFile
+  createFile
 };

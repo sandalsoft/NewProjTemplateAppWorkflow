@@ -1,6 +1,6 @@
-// import { babel } from 'babel-core';
+// eslint-disable-next-line import/no-commonjs
 const babel = require('babel-core');
-const promisify = require('util').promisify;
+// import babel from 'babel-core';
 
 export const transformCode = ({ functionName, plugin, code }) => {
   const options = {
@@ -22,9 +22,10 @@ export const transformCode = ({ functionName, plugin, code }) => {
   return babel.transform(code, options).code;
 };
 
+/**
 export const transformFile = async ({ functionName, plugin, filename }) => {
   throw new Error('NOT IMPLEMENTED - use transFormCode() instead');
-  /**
+
   const options = {
     plugins: [
       [
@@ -52,6 +53,5 @@ export const transformFile = async ({ functionName, plugin, filename }) => {
     err && console.log(`err: ${JSON.stringify(err)}`);
     console.log(`result: ${JSON.stringify(result)}`);
   });
-
-  */
 };
+  */
