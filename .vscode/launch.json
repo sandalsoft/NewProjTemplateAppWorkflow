@@ -8,7 +8,10 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/dist/index.js"
+      "program": "${workspaceFolder}/dist/index.js",
+      "cwd": "${workspaceRoot}",
+      // "preLaunchTask": "npm:transpile",
+      "outFiles": ["${workspaceRoot}/dist/**.js"]
     }
   ]
 }
