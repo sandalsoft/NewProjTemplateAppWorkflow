@@ -19,7 +19,7 @@ export const writeFile = ({ filePath, fileData, encoding = 'utf8' }) => {
       throw new Error(`${filePath} already exists.`);
     });
   try {
-    fs.writeFileSync(filePath, fileData, encoding);
+    fs.writeFileSync(filePath, fileData, { encoding });
     return true;
   } catch (err) {
     throw new Error(err);

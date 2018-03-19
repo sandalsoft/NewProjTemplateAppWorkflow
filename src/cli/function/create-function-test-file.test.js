@@ -12,7 +12,7 @@ const functionName = 'takeDump';
 const componentName = 'babel';
 const testComponentPath = path.join(dummyProjectRootDir, 'src', componentName);
 const testFileName = `${changeCase.paramCase(functionName)}.test.js`;
-const fileData = Config.cli.testText({
+const fileData = Config.cli.testData({
   functionName: functionName,
   testFileName: testFileName
 });

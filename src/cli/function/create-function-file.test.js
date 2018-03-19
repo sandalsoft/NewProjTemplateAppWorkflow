@@ -25,12 +25,12 @@ afterEach(() => {
 
 test('should not throw:', () => {
   expect(function() {
-    createFunctionFile(functionName, componentPath, fileData);
+    createFunctionFile({ functionName, componentPath, fileData });
   }).not.toThrow();
 });
 
 test('file is created with proper text:', () => {
-  createFunctionFile(functionName, componentPath, fileData);
+  createFunctionFile({ functionName, componentPath, fileData });
 
   const dataFromFile = readFile({ filePath: filePath });
 

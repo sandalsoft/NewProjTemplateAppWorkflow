@@ -2,8 +2,9 @@ import prompts from 'prompts';
 import path from 'path';
 
 import { directoryList } from '../../util/side-effects';
+
 export const functionPrompt = async ({
-  srcDir = process.cwd(),
+  srcDir = path.join(process.cwd(), 'src'),
   answers = undefined
 }) => {
   // If answers are supplied for testing, inject them into prompts
@@ -17,12 +18,12 @@ export const functionPrompt = async ({
   const questions = [
     {
       type: 'text',
-      name: 'name',
+      name: 'functionName',
       message: 'Function name: '
     },
     {
       type: 'autocomplete',
-      name: 'component',
+      name: 'componentName',
       message: 'Which component is this part of: ',
       choices: [{ title: 'NEW COMPONENT', value: 'new' }, ...componentList]
     },

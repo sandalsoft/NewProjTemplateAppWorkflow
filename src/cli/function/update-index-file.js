@@ -1,17 +1,24 @@
 import path from 'path';
 import changeCase from 'change-case';
-
-import { readFile, writeFile, fileExists } from '../../util/side-effects';
+import { transformCode } from '../../util/transform';
+import {
+  readFile,
+  writeFile,
+  fileExists,
+  plugin
+} from '../../util/side-effects';
 
 export const updateIndexFile = ({ functionName, indexFilePath }) => {
-  const indexFileData = readFile({ indexFilePath });
+  const filePath = indexFilePath;
+  const indexFileData = readFile({ filePath });
 
   indexFileData.includes(functionName) &&
     (() => {
       throw new Error(`${functionName}() function already exists in index`);
     });
 
-  return true;
+  const code = readFile({ filePath });
+  transformCode({ functionName, plugin, code });
 };
 
 /**

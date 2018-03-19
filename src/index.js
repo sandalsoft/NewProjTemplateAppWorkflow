@@ -1,25 +1,20 @@
 // import path from 'path';
 // import { setGithubOrigin, gitInit, gitignore, createGithubRepo } from './git';
-// import { functionPrompt } from './cli';
 
-import { transformCode } from './util/side-effects/transform';
-import { readFile } from './util/side-effects/read-file';
-import { log, chop } from './util';
+import { createFunction } from './cli/function';
+import { createComponent } from './cli/function';
+import { functionPrompt } from './cli/function';
+
 // import Config from '../config';
 
-const main = () => {
+const main = async () => {
   try {
-    log(chop('lets do this!\n'));
-
-    const code = readFile({
-      filePath:
-        '/Users/enelson/Development/NewProjTemplateAppWorkflow/src/util/side-effects/index.js'
-    });
-
-    const functionName = 'makeMeRich';
-
-    const output = transformCode({ code, functionName });
-    console.log(output);
+    const response = await functionPrompt({});
+    console.log(`response: ${JSON.stringify(response)}`);
+    const { componentName, functionName, newComponentName } = response;
+    newComponentName
+      ? createComponent(componentName)
+      : createFunction({ componentName, functionName });
   } catch (err) {
     console.log(err);
   }

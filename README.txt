@@ -27,13 +27,13 @@ return output
     * ask (default to Y) if want to continue to function generation (because you probably created)
   
   * new function
-    * Ask which compoennt function is part of (Autocomplete list for existing coponents) - Or default to recently created component above 
-    * create funtion-name.js file
-    * import { log, rejectIfMissing, etc } in function-name.js
+    - Ask which compoennt function is part of (Autocomplete list for existing coponents) - Or default to recently created component above 
+    - create funtion-name.js file
+    - import { log, rejectIfMissing, etc } in function-name.js
     * stub 'const functionName = () => { \n\n\n }'
-    * export functionName at bottom
-    * create function-name.test.js file
-    * add import/export to index.js
+    - export functionName at bottom
+    - create function-name.test.js file
+    + add import/export to index.js
 
 
 - create directories
