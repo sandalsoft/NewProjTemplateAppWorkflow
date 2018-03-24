@@ -14,7 +14,7 @@ import { getProjectRootDir } from '../../util/get-project-root-dir';
 
 export const createFunction = async ({ componentName, functionName }) => {
   try {
-    const projectRootDir = getProjectRootDir();
+    const projectRootDir = getProjectRootDir({});
     const componentPath = getComponentDir({ componentName, projectRootDir });
     const componentIndexFilePath = path.join(componentPath, 'index.js');
 

@@ -5,7 +5,7 @@ import { getProjectRootDir } from '../../util/get-project-root-dir';
 
 export const getFunctionTestDir = ({
   componentName,
-  testingRootDir = path.join(getProjectRootDir(), 'test')
+  testingRootDir = path.join(getProjectRootDir({}), 'test')
 }) => {
   console.log(`gftd: componentName: ${JSON.stringify(componentName)}`);
   console.log(`gftd: testingRootDir: ${JSON.stringify(testingRootDir)}`);

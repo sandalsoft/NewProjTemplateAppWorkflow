@@ -11,7 +11,7 @@ import { functionPrompt } from './function-prompt';
 //   '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/cli/dummy_proj_for_cli';
 
 test('passing proper srcDir returns proper directories', async () => {
-  const expected = { function: 'testFunc', component: 'babel' };
+  const expected = { functionName: 'testFunc', componentName: 'babel' };
 
   const actual = await functionPrompt({ answers: expected });
   expect(actual).toEqual(expected);
@@ -19,9 +19,9 @@ test('passing proper srcDir returns proper directories', async () => {
 
 test('Answering NEW to component asks for new component name:', async () => {
   const expected = {
-    function: 'testFunc',
-    component: 'new',
-    newComponent: 'testComponent'
+    functionName: 'testFunc',
+    componentName: 'new',
+    newComponentName: 'testComponent'
   };
 
   const actual = await functionPrompt({ answers: expected });

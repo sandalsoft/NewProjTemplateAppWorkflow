@@ -1,7 +1,7 @@
 
 # Don't lint testfile because too many red squiggles.
 # Not an ideal situation, meh
-**/*.test.js
+# **/*.test.js
 #
 ##
 #   This is created by cat .gitgnore > .exlintignore
@@ -24,6 +24,7 @@ env.yml
 .serverless
 
 # Logs
+**/*.log
 logs
 *.log
 npm-debug.log*
@@ -62,6 +63,7 @@ dist/
 
 # Dependency directories
 node_modules
+node_modules_bak/
 jspm_packages
 node_modules/
 jspm_packages/

@@ -8,7 +8,7 @@ import { getProjectRootDir } from '../../util/get-project-root-dir';
 
 export const createFunctionTestDir = async ({
   componentName,
-  testingRootDir = path.join(getProjectRootDir(), 'test')
+  testingRootDir = path.join(getProjectRootDir({}), 'test')
 }) => {
   const testDir = getFunctionTestDir({
     componentName,

@@ -6,7 +6,7 @@ import Config from '../../config';
 
 const gitignoreURL = Config.git.gitignoreURL;
 
-export const createGitIgnore = async (projectDir = getProjectRootDir()) => {
+export const createGitIgnore = async (projectDir = getProjectRootDir({})) => {
   !isValidProjectDir(projectDir) &&
     (() => {
       return Promise.reject(
