@@ -28,12 +28,17 @@ return output
   
   * new function
     - Ask which compoennt function is part of (Autocomplete list for existing coponents) - Or default to recently created component above 
+    * ASK if it's .ts or .js
     - create funtion-name.js file
     - import { log, rejectIfMissing, etc } in function-name.js
-    * stub 'const functionName = () => { \n\n\n }'
+    - stub 'const functionName = () => { \n\n\n }'
     - export functionName at bottom
     - create function-name.test.js file
-    + add import/export to index.js
+    - add import/export to index.js
+
+* TYPESCRIPT ? ? 
+  - tslint.json
+  - tsconfig.json
 
 
 - create directories
@@ -62,6 +67,7 @@ return output
   * .vscode/launch.json // for debugging setup
   * Install workspace color them
     * Change bottom bar color to distiguisg projects - small tweak on the standard theme (which itself will be a slightly tweaked version of Solarized-dark])
+  * set .editorconfig - https://gist.githubusercontent.com/sandalsoft/8dc8c4a2047d38e3db3138229a2427cb/raw/977e609c5c275b92f17420b13353a51a4468b8c1/.editorconfig
 
 - npm - download and write package.json and install modules (run yarn)
   ** scripts

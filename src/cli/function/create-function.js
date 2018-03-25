@@ -1,16 +1,16 @@
-import path from 'path';
 import changeCase from 'change-case';
+import path from 'path';
 
-import Config from '../../../config';
+import { addFunctionToIndex } from './add-function-to-index.js';
 import { createFunctionFile } from './create-function-file';
 import { createFunctionTestDir } from './create-function-test-dir';
 import { createFunctionTestFile } from './create-function-test-file';
 import { createIndexFile } from './create-index-file.js';
-import { addFunctionToIndex } from './add-function-to-index.js';
-import { getFunctionTestDir } from './get-function-test-dir';
-import { getComponentDir } from '../component/get-component-dir';
 import { fileExists } from '../../util/side-effects';
+import { getComponentDir } from '../component/get-component-dir';
+import { getFunctionTestDir } from './get-function-test-dir';
 import { getProjectRootDir } from '../../util/get-project-root-dir';
+import Config from '../../../config';
 
 export const createFunction = async ({ componentName, functionName }) => {
   try {
