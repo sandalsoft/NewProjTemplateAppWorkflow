@@ -4,8 +4,8 @@ export const createIndexFile = ({ indexFilePath, indexFileData }) => {
   const filePath = indexFilePath;
   const fileData = indexFileData;
 
-  console.log(`indexFilePath: ${JSON.stringify(indexFilePath)}`);
-  console.log(`indexFileData: ${JSON.stringify(indexFileData)}`);
+  // console.log(`indexFilePath: ${JSON.stringify(indexFilePath)}`);
+  // console.log(`indexFileData: ${JSON.stringify(indexFileData)}`);
 
   fileExists(indexFilePath) &&
     (() => {
@@ -13,8 +13,7 @@ export const createIndexFile = ({ indexFilePath, indexFileData }) => {
     });
 
   try {
-    //TODO: return a promise (with a value) so this function can be chained with others that return a promise
-    return writeFile({ filePath, fileData });
+    return Promise.resolve(writeFile({ filePath, fileData }));
   } catch (err) {
     throw new Error(err);
   }

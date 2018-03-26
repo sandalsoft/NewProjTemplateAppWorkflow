@@ -2,7 +2,7 @@ import path from 'path';
 
 import { createIndexFile } from './create-index-file';
 import { getProjectTestingRootDir } from '../../util/get-project-testing-root-dir';
-import { removeFile, readFile } from '../../util/side-effects';
+import { removeFile, readFile, fileExists } from '../../util/side-effects';
 import Config from '../../../config';
 
 /* Dir structure for testing
@@ -25,16 +25,17 @@ const indexFileData = importLine + '\n' + exportLine;
 
 afterEach(() => {
   try {
-    removeFile(indexFilePath);
+    fileExists(indexFilePath) && removeFile(indexFilePath);
   } catch (err) {
     console.error(err.stack || err);
   }
 });
 
-test('index file is created with proper content', () => {
+test('index file is created with proper content', async () => {
+  expect.assertions(1);
   const expected = true;
 
-  const isIndexisFileCreated = createIndexFile({
+  const isIndexisFileCreated = await createIndexFile({
     indexFilePath,
     indexFileData
   });
@@ -43,7 +44,8 @@ test('index file is created with proper content', () => {
 
   const actual =
     dataFromFile.includes(indexFileData) &&
-    dataFromFile.includes(`export { ${functionName}`);
+    dataFromFile.includes(`export { ${functionName}`) &&
+    isIndexisFileCreated;
 
   expect(actual).toEqual(expected);
 });
