@@ -1,32 +1,33 @@
+import changeCase from 'change-case';
+import path from 'path';
+
+import { getProjectRootDir } from '../util/get-project-root-dir';
 import { transformCode } from './transform';
 
-import changeCase from 'change-case';
-// const plugin = ' ./src/util/babel-transform-plugin';
-const plugin = require('./babel-transform-plugin');
-const functionName = 'makeMeRich';
-const expected = `import { ${functionName} } from "./${changeCase.paramCase(
-  functionName
-)}";`;
+const functionName = 'transformTestFunction';
+const pluginFilePath = path.join(
+  getProjectRootDir({}),
+  'src/util/babel-transform-plugin.js'
+);
 
-test('transformCode works', () => {
-  const code = `
+test('transformCode works', async () => {
+  const expected = true;
+  const correctImportCode = `import { ${functionName} } from "./${changeCase.paramCase(
+    functionName
+  )}";`;
+
+  const existingIndexCode = `
     import { setGithubOrigin } from './set-github-origin';
     import { createGitignore } from './create-gitignore';
     export { setGithubOrigin, createGitignore};
     `;
 
-  const actual = transformCode({ functionName, plugin, code });
-  expect(true).toEqual(actual.includes(expected));
+  const transformedCode = await transformCode({
+    functionName,
+    pluginFilePath,
+    existingIndexCode
+  });
+
+  const actual = transformedCode.includes(correctImportCode);
+  expect(expected).toEqual(actual);
 });
-
-// test('transformFile throws error:', async () => {
-//   // expect.assertions(1);
-//   const filename = './src/util/index.js';
-//   // const actual = await transformFile({ functionName, plugin, filename });
-
-//   function tryTransform() {
-//     transformFile({ functionName, plugin, filename });
-//   }
-
-//   expect(tryTransform).toThrowError(/NOT/);
-// });
