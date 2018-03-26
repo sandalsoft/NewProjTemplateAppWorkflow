@@ -1,24 +1,32 @@
 import path from 'path';
 import changeCase from 'change-case';
 import { transformCode } from '../../util/transform';
-import {
-  readFile,
-  writeFile,
-  fileExists,
-  plugin
-} from '../../util/side-effects';
+import { readFile, writeFile, fileExists } from '../../util/side-effects';
 
+// const plugin = require('../../util/babel-transform-plugin ');
+const pluginFilename = '../../util/babel-transform-plugin ';
 export const updateIndexFile = ({ functionName, indexFilePath }) => {
   const filePath = indexFilePath;
+  console.log(`filePath: ${JSON.stringify(filePath)}`);
   const indexFileData = readFile({ filePath });
+  console.log(`indexFileData: ${JSON.stringify(indexFileData)}`);
+  console.log(`functionName: ${JSON.stringify(functionName)}`);
+  console.log(`plugin: ${JSON.stringify(pluginFilename)}`);
 
   indexFileData.includes(functionName) &&
     (() => {
       throw new Error(`${functionName}() function already exists in index`);
     });
 
-  const code = readFile({ filePath });
-  transformCode({ functionName, plugin, code });
+  try {
+    const code = readFile({ filePath });
+    console.log(`code: ${JSON.stringify(code)}`);
+    const fileData = transformCode({ functionName, pluginFilename, code });
+    console.log(`fileData: ${JSON.stringify(fileData)}`);
+    return writeFile({ filePath, fileData });
+  } catch (err) {
+    return Promise.reject(err);
+  }
 };
 
 /**

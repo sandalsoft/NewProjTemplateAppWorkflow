@@ -5,10 +5,13 @@ export default {
       'https://gist.githubusercontent.com/sandalsoft/9ce8d5454f00efa6e42d5b5f5a9f5af8/raw/.gitignore'
   },
   cli: {
-    indexFileData: (functionName) => {
+    indexFileImportModuleLine: (functionName) => {
       return `import { ${functionName} } from './${changeCase.paramCase(
         functionName
-      )}'; `;
+      )}';`;
+    },
+    indexFileExportModuleLine: (functionName) => {
+      return `export { ${functionName} };`;
     },
     functionText: (functionName) => {
       return `import { log, rejectIfMissing } from './util';

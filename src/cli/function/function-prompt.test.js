@@ -8,7 +8,7 @@ import { functionPrompt } from './function-prompt';
 */
 
 // const projectRootDir =
-//   '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/cli/dummy_proj_for_cli';
+//   '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/cli/ProjectRootForTesting';
 
 test('passing proper srcDir returns proper directories', async () => {
   const expected = { functionName: 'testFunc', componentName: 'babel' };

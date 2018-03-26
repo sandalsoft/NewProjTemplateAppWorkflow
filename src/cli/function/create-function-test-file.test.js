@@ -6,7 +6,7 @@ import { createFunctionTestFile } from './create-function-test-file';
 import Config from '../../../config';
 
 const dummyProjectRootDir =
-  '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/cli/dummy_proj_for_cli';
+  '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/cli/ProjectRootForTesting';
 
 const functionName = 'takeDump';
 const componentName = 'babel';

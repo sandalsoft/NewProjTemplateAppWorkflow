@@ -17,7 +17,7 @@ import { canCreateComponent, createComponent } from '.';
 
 const componentName = 'mirv';
 const projectRootDir =
-  '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/generator/dummy_proj_for_generator';
+  '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/generator/ProjectRootForTesting';
 const componentDir = path.join(projectRootDir, 'src', componentName);
 
 beforeAll(async () => {

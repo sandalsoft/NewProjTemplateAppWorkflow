@@ -4,7 +4,7 @@ import { getFunctionTestDir } from './get-function-test-dir';
 
 import { createDirectory } from '../../util/side-effects';
 import { getProjectRootDir } from '../../util/get-project-root-dir';
-///Users/enelson/Development/NewProjTemplateAppWorkflow/test/cli/dummy_proj_for_cli/src/cli/functionName
+///Users/enelson/Development/NewProjTemplateAppWorkflow/test/cli/ProjectRootForTesting/src/cli/functionName
 
 export const createFunctionTestDir = async ({
   componentName,

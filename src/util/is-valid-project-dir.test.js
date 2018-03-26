@@ -7,9 +7,9 @@ test('/etc is invalid:', () => {
   expect(actual).toEqual(expected);
 });
 
-test('/Users/enelson/Development/NewProjTemplateAppWorkflow/test/generator/dummy_proj_for_generator is valid:', () => {
+test('/Users/enelson/Development/NewProjTemplateAppWorkflow/test/generator/ProjectRootForTesting is valid:', () => {
   const actual = isValidProjectDir(
-    '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/generator/dummy_proj_for_generator'
+    '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/generator/ProjectRootForTesting'
   );
 
   const expected = true;

@@ -37,8 +37,17 @@ return output
     - add import/export to index.js
 
 * TYPESCRIPT ? ? 
-  - tslint.json
-  - tsconfig.json
+  * pg 120 of GitBook https://www.gitbook.com/book/basarat/typescript/details
+  * tslint.json
+    - "no-null-keyword": true
+  * tsconfig.json
+    - https://codeburst.io/five-tips-i-wish-i-knew-when-i-started-with-typescript-c9e8609029db
+      "forceConsistentCasingInFileNames": true,
+      "noImplicitReturns": true,
+      "strict": true,
+      "noUnusedLocals": true,
+      “no-any”: true
+
 
 
 - create directories

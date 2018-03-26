@@ -3,6 +3,7 @@ const babel = require('babel-core');
 // import babel from 'babel-core';
 
 export const transformCode = ({ functionName, plugin, code }) => {
+  console.log(`plugin: ${JSON.stringify(plugin)}`);
   const options = {
     plugins: [
       [
@@ -19,7 +20,14 @@ export const transformCode = ({ functionName, plugin, code }) => {
       generator: 'recast'
     }
   };
-  return babel.transform(code, options).code;
+
+  try {
+    const updatedCode = babel.transform(code, options).code;
+    console.log(`updatedCode: ${JSON.stringify(updatedCode)}`);
+    return updatedCode;
+  } catch (err) {
+    return Promise.reject(err);
+  }
 };
 
 /**

@@ -13,39 +13,78 @@ import { getProjectRootDir } from '../../util/get-project-root-dir';
 import Config from '../../../config';
 
 export const createFunction = async ({ componentName, functionName }) => {
+  const projectRootDir = getProjectRootDir({});
+  const componentPath = getComponentDir({ componentName, projectRootDir });
+  const componentIndexFilePath = path.join(componentPath, 'index.js');
+
+  const fileData = Config.cli.functionText(functionName);
+  const indexFileData = Config.cli.indexFileImportModuleLine(functionName);
+  const testComponentPath = getFunctionTestDir({ componentName });
+
+  const functionTestFileName = path.join(
+    testComponentPath,
+    `${changeCase.paramCase(functionName)}.js`
+  );
+  const functionTestFileData = Config.cli.testData({
+    functionName,
+    functionTestFileName
+  });
+
+  //
+  //
+  //
+  // Do Stuff
+  //
+
   try {
-    const projectRootDir = getProjectRootDir({});
-    const componentPath = getComponentDir({ componentName, projectRootDir });
-    const componentIndexFilePath = path.join(componentPath, 'index.js');
-
-    const fileData = Config.cli.functionText(functionName);
-    const indexFileData = Config.cli.indexFileData(functionName);
-    const testComponentPath = getFunctionTestDir({ componentName });
-
-    const functionTestFileName = path.join(
-      testComponentPath,
-      `${changeCase.paramCase(functionName)}.js`
-    );
-    const functionTestFileData = Config.cli.testData({
-      functionName,
-      functionTestFileName
-    });
-    // Do Stuff
     const isCreateFileSuccessful = createFunctionFile({
       functionName,
       componentPath,
       fileData
     });
+    console.log(
+      `isCreateFileSuccessful: ${JSON.stringify(isCreateFileSuccessful)}`
+    );
+  } catch (err) {
+    return Promise.reject(err);
+  }
 
+  //
+  //
+
+  try {
     const isCreateTestDirSuccessful = await createFunctionTestDir({
       componentName
     });
+    console.log(
+      `isCreateTestDirSuccessful: ${JSON.stringify(isCreateTestDirSuccessful)}`
+    );
+  } catch (err) {
+    return Promise.reject(err);
+  }
+
+  //
+  //
+
+  try {
     const isCreateTestFileSuccessful = createFunctionTestFile({
       functionName,
       testComponentPath,
       functionTestFileData
     });
+    console.log(
+      `isCreateTestFileSuccessful: ${JSON.stringify(
+        isCreateTestFileSuccessful
+      )}`
+    );
+  } catch (err) {
+    return Promise.reject(err);
+  }
 
+  //
+  //
+
+  try {
     fileExists(componentIndexFilePath)
       ? addFunctionToIndex({ functionName, componentPath })
       : createIndexFile({

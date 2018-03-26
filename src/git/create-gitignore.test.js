@@ -5,7 +5,7 @@ import { createGitIgnore } from './create-gitignore';
 import { log, isValidProjectDir } from '../util';
 
 const projectRootDir =
-  '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/generator/dummy_proj_for_generator';
+  '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/generator/ProjectRootForTesting';
 const gitignoreFile = path.join(projectRootDir, '.gitignore');
 
 beforeAll(() => {
