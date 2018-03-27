@@ -1,9 +1,13 @@
-import fs from 'fs-extra';
-import path from 'path';
+import * as fs from 'fs-extra';
+import * as path from 'path';
 
 const AnchorFiles = ['package.json', 'node_modules']; // 'tsconfig.json' for typescript projects
 
-const dirIsProjectRoot = ({ dir, anchors = AnchorFiles }) => {
+const dirIsProjectRoot = (
+  { dir, anchors }: { dir?: string; anchors?: string[] } = {
+    anchors: AnchorFiles
+  }
+): boolean => {
   const anchorList = anchors
     .map((anchor) => {
       return fs.existsSync(path.join(dir, anchor));
@@ -14,10 +18,11 @@ const dirIsProjectRoot = ({ dir, anchors = AnchorFiles }) => {
   return anchorList.length === anchors.length ? true : false;
 };
 
-export const getProjectRootDir = ({
-  dir = process.cwd(),
-  anchors = AnchorFiles
-}) => {
+export const getProjectRootDir = (
+  { dir, anchors }: { dir?: string; anchors?: string[] } = {
+    anchors: AnchorFiles
+  }
+): string => {
   !dir &&
     (() => {
       return false;

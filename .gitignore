@@ -58,8 +58,9 @@ bower_components
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
-# Transpiled stuff
+# Trans/Com-piled stuff
 dist/
+lib/
 
 # Dependency directories
 node_modules

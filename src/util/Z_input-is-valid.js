@@ -1,4 +1,4 @@
-import isAlpha from 'validator/lib/isAlpha';
+import * as isAlpha from 'validator/lib/isAlpha';
 
 export const inputIsValid = (input) => {
   return isAlpha(input.charAt(0));

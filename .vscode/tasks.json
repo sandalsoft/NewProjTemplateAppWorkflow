@@ -7,6 +7,14 @@
       "type": "npm",
       "script": "transpile",
       "problemMatcher": []
+    },
+    {
+      "type": "typescript",
+      "tsconfig": "node_modules_bak/cleanjs/tsconfig.json",
+      "option": "watch",
+      "problemMatcher": [
+        "$tsc-watch"
+      ]
     }
   ]
 }

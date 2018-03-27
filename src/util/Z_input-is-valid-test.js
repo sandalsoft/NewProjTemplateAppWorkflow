@@ -1,4 +1,4 @@
-import { inputIsValid } from '.';
+import { inputIsValid } from './input-is-valid';
 
 test('/etc/passwd is invalid', () => {
   const expected = 'false';
