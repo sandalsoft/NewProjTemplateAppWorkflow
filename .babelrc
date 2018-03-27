@@ -12,7 +12,8 @@
   "plugins": [
     "transform-es2015-spread",
     "transform-object-rest-spread",
-    "transform-async-to-generator"
+    "transform-async-to-generator",
+    "transform-es2015-modules-commonjs"
   ],
   "sourceMaps": "both"
 }
