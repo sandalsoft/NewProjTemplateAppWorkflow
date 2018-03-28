@@ -26,7 +26,7 @@ const importLine = Config.cli.indexFileImportModuleLine('existingFunctionName');
 const exportLine = Config.cli.indexFileExportModuleLine('existingFunctionName');
 const indexFileData = importLine + '\n' + exportLine;
 const pluginFilePath = path.join(
-  getProjectRootDir({}),
+  getProjectRootDir(),
   '/src/util/babel-transform-plugin.js'
 );
 

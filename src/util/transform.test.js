@@ -6,7 +6,7 @@ import { transformCode } from './transform';
 
 const functionName = 'transformTestFunction';
 const pluginFilePath = path.join(
-  getProjectRootDir({}),
+  getProjectRootDir(),
   'src/util/babel-transform-plugin.js'
 );
 

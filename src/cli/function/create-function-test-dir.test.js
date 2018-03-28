@@ -5,7 +5,8 @@ import { createFunctionTestDir } from './create-function-test-dir';
 import { getFunctionTestDir } from './get-function-test-dir';
 import { removeFile } from '../../util/side-effects';
 
-const testingRootDir = path.join(getProjectRootDir({}), 'test');
+const testingRootDir = path.join(getProjectRootDir(), 'test');
+console.log(`testingRootDir: ${JSON.stringify(testingRootDir)}`);
 const componentName = 'test_cli';
 
 beforeEach(() => {

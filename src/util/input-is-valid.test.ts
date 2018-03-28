@@ -7,7 +7,7 @@ test('/etc/passwd is invalid', () => {
 });
 
 test('../whatever is invalid', () => {
-  const actual = true;
-  const expected = inputIsValid('../whateverXX');
+  const actual = false;
+  const expected = inputIsValid('../whatever');
   expect(actual).toEqual(expected);
 });

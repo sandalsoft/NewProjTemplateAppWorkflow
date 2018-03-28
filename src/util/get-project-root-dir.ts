@@ -1,28 +1,19 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
 
-const AnchorFiles = ['package.json', 'node_modules']; // 'tsconfig.json' for typescript projects
+const AnchorFiles = ['package.json', 'node_modules'];
 
-const dirIsProjectRoot = (
-  { dir, anchors }: { dir?: string; anchors?: string[] } = {
-    anchors: AnchorFiles
-  }
-): boolean => {
-  const anchorList = anchors
-    .map((anchor) => {
-      return fs.existsSync(path.join(dir, anchor));
-    })
-    .filter((val) => {
-      return val === true;
-    });
-  return anchorList.length === anchors.length ? true : false;
-};
+// https://stackoverflow.com/questions/23314806/setting-default-value-for-typescript-object-passed-as-argument/32596200#32596200
 
-export const getProjectRootDir = (
-  { dir, anchors }: { dir?: string; anchors?: string[] } = {
-    anchors: AnchorFiles
-  }
-): string => {
+export const getProjectRootDir = ({
+  dir = process.cwd(),
+  anchors = AnchorFiles
+}: {
+  dir?: string;
+  anchors?: string[];
+} = {}): string => {
+  console.log(`dir: ${JSON.stringify(dir)}`);
+  console.log(`anchors: ${JSON.stringify(anchors)}`);
   !dir &&
     (() => {
       return false;
@@ -33,7 +24,22 @@ export const getProjectRootDir = (
       return '/';
     });
 
-  return dirIsProjectRoot({ dir, anchors })
+  return isDirProjectRoot({ dir, anchors })
     ? dir
-    : getProjectRootDir({ dir: path.join(dir, '..') });
+    : getProjectRootDir({ dir: path.join(dir, '..'), anchors: AnchorFiles });
+};
+
+const isDirProjectRoot = ({
+  dir,
+  anchors = AnchorFiles
+}: {
+  dir: string;
+  anchors?: string[];
+}): boolean => {
+  const anchorList = AnchorFiles.map((anchor) => {
+    return fs.existsSync(path.join(dir, anchor));
+  }).filter((val) => {
+    return val === true;
+  });
+  return anchorList.length === anchors.length ? true : false;
 };
