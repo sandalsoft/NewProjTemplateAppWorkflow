@@ -12,8 +12,6 @@ export const getProjectRootDir = ({
   dir?: string;
   anchors?: string[];
 } = {}): string => {
-  console.log(`dir: ${JSON.stringify(dir)}`);
-  console.log(`anchors: ${JSON.stringify(anchors)}`);
   !dir &&
     (() => {
       return false;

@@ -14,7 +14,5 @@ export const getFunctionTestDir = ({
     'src', // src/
     componentName // cli
   );
-
-  console.log(`testDir: ${JSON.stringify(testDir)}`);
   return testDir;
 };

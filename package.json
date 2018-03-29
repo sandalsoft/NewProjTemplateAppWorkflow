@@ -7,14 +7,18 @@
   "scripts": {
     "compile": "tsc",
     "pretranspile": "rm -rf ./dist",
-    "transpile": "echo 'Compiling ./src -> ./dist' && babel src --out-dir ./dist  --source-maps ",
+    "transpile":
+      "echo 'Compiling ./src -> ./dist' && babel src --out-dir ./dist  --source-maps ",
     "start:dist": "node ./dist/index",
     "start": "babel-node ./src/index",
     "precover": "yarn run transpile",
     "cover": "c8 node ./dist/index.js",
-    "test": "jest src --testPathIgnorePatterns \"/test/\"",
-    "test:ts": "jest src/**/*.test.ts --testPathIgnorePatterns \"/test/\" --testPathIgnorePatterns \"/node_modules.*/\"",
-    "test:watch": "yarn run test --watch --watchPathIgnorePatterns \"/test/\" --testPathIgnorePatterns \"/node_modules.*/\""
+    "test":
+      "jest src --testPathIgnorePatterns \"/test/\" --config=jest.config.json",
+    "test:ts":
+      "jest src/**/*.test.ts --testPathIgnorePatterns \"/test/\" --testPathIgnorePatterns \"/node_modules.*/\"",
+    "test:watch":
+      "yarn run test --watch --watchPathIgnorePatterns \"/test/\" --testPathIgnorePatterns \"/node_modules.*/\""
   },
   "devDependencies": {
     "@types/fs-extra": "^5.0.1",
@@ -23,6 +27,7 @@
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.2",
     "babel-jest": "^22.4.3",
+    "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-es2015-spread": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",

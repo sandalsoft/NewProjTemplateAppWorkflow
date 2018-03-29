@@ -8,9 +8,9 @@ const projectRootDir =
   '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/generator/ProjectRootForTesting';
 const gitignoreFile = path.join(projectRootDir, '.gitignore');
 
-beforeAll(() => {
-  log('Setting up tests');
-});
+// beforeAll(() => {
+//   log('Setting up tests');
+// });
 
 afterAll(() => {
   try {
