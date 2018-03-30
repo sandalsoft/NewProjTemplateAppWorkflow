@@ -7,18 +7,15 @@
   "scripts": {
     "compile": "tsc",
     "pretranspile": "rm -rf ./dist",
-    "transpile":
-      "echo 'Compiling ./src -> ./dist' && babel src --out-dir ./dist  --source-maps ",
+    "transpile": "echo 'Compiling ./src -> ./dist' && babel src --out-dir ./dist  --source-maps ",
     "start:dist": "node ./dist/index",
     "start": "babel-node ./src/index",
+    "start:ts": "ts-node -r tsconfig-paths/register ./src/index",
     "precover": "yarn run transpile",
     "cover": "c8 node ./dist/index.js",
-    "test":
-      "jest src --testPathIgnorePatterns \"/test/\" --config=jest.config.json",
-    "test:ts":
-      "jest src/**/*.test.ts --testPathIgnorePatterns \"/test/\" --testPathIgnorePatterns \"/node_modules.*/\"",
-    "test:watch":
-      "yarn run test --watch --watchPathIgnorePatterns \"/test/\" --testPathIgnorePatterns \"/node_modules.*/\""
+    "test": "jest src --testPathIgnorePatterns \"/test/\" --config=jest.config.json",
+    "test:ts": "jest src/**/*.test.ts --testPathIgnorePatterns \"/test/\" --testPathIgnorePatterns \"/node_modules.*/\"",
+    "test:watch": "yarn run test --watch --watchPathIgnorePatterns \"/test/\" --testPathIgnorePatterns \"/node_modules.*/\""
   },
   "devDependencies": {
     "@types/fs-extra": "^5.0.1",
@@ -49,6 +46,7 @@
     "eslint-plugin-unicorn": "^4.0.2",
     "jest": "^22.4.3",
     "ts-jest": "^22.4.2",
+    "tsconfig-paths": "^3.1.3",
     "typescript": "^2.8.1",
     "typescript-tools": "^0.3.1"
   },
