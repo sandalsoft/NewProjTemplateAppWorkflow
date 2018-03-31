@@ -8,9 +8,11 @@ export const createFunctionTestFile = ({
   testComponentPath,
   fileData
 }) => {
+  console.log(`testComponentPath: ${JSON.stringify(testComponentPath)}`);
   const fileName = `${changeCase.paramCase(functionName)}.test.js`;
   const filePath = path.join(testComponentPath, fileName);
 
+  console.log(`filePath: ${JSON.stringify(filePath)}`);
   try {
     return writeFile({ filePath, fileData });
   } catch (err) {

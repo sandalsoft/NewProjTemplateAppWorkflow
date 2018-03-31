@@ -8,8 +8,13 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@side-effects/*": ["./src/util/side-effects/*"],
+      "@util/*": ["./src/util/*"],
+      "@Config": ["./config"]
+    }
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "lib"]
+  "exclude": ["node_modules", "lib", "dist"]
 }

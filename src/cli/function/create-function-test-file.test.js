@@ -1,27 +1,48 @@
 import path from 'path';
 import changeCase from 'change-case';
 
-import { removeFile, readFile } from '../../util/side-effects';
+import {
+  removeFile,
+  readFile,
+  createDirectory,
+  fileExists
+} from '../../util/side-effects';
 import { createFunctionTestFile } from './create-function-test-file';
+import { getComponentTestPath } from '../../util';
+
 import Config from '../../../config';
 
-const dummyProjectRootDir =
-  '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/cli/ProjectRootForTesting';
+/*
+  PROJECT_TEST_ROOT   /Users/enelson/Development/NewProjTemplateAppWorkflow/test
+  COMPONENT   /cli
+              /ProjectRootForTesting
+              /src
+  FUNCTION    /create-functiontest-file.js
 
-const functionName = 'takeDump';
-const componentName = 'babel';
-const testComponentPath = path.join(dummyProjectRootDir, 'src', componentName);
+*/
+
+const functionName = 'createFunctionTestFile';
+const componentName = 'cli';
+
+const componentTestRootPath = getComponentTestPath({ componentName }); // /cli
+const componentTestSrcPath = path.join(componentTestRootPath, 'src'); // /src
+const dirWhereFunctionTestLives = path.dirname(functionTestFilePath);
 const testFileName = `${changeCase.paramCase(functionName)}.test.js`;
+const functionTestFilePath = path.join(componentTestSrcPath, testFileName); // the right file
+
 const fileData = Config.cli.testData({
   functionName: functionName,
   testFileName: testFileName
 });
 
-const filePath = path.join(testComponentPath, testFileName);
+beforeEach(() => {
+  !fileExists(dirWhereFunctionTestLives) &&
+    createDirectory(dirWhereFunctionTestLives);
+});
 
 afterEach(() => {
   try {
-    removeFile(filePath);
+    removeFile(functionTestFilePath);
   } catch (err) {
     console.error(err.stack || err);
   }
@@ -31,7 +52,7 @@ test('should not throw:', () => {
   expect(function() {
     createFunctionTestFile({
       functionName,
-      testComponentPath,
+      componentTestRootPath,
       fileData
     });
   }).not.toThrow();
@@ -40,11 +61,11 @@ test('should not throw:', () => {
 test('file is created with proper text:', () => {
   const isSuccessful = createFunctionTestFile({
     functionName,
-    testComponentPath,
+    componentTestRootPath,
     fileData
   });
 
-  const actualFileData = readFile({ filePath });
+  const actualFileData = readFile({ filePath: functionTestFilePath });
   const expected = true;
   const actual = actualFileData.includes(fileData); //&& fileData.includes('beforeEach');
 

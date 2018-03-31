@@ -4,5 +4,15 @@
     "^.+\\.jsx?$": "babel-jest"
   },
   "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+  "moduleNameMapper": {
+    "^@side-effects/(.*)": "<rootDir>/src/util/side-effects/$1",
+    "^@util/(.*)": "<rootDir>/src/util/$1",
+    "^@Config": "<rootDir>/config"
+  },
+  "globals": {
+    "ts-jest": {
+      "enableTsDiagnostics": true
+    }
+  }
 }

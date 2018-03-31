@@ -1,5 +1,8 @@
 import changeCase from 'change-case';
 export default {
+  testing: {
+    testingProjDirName: 'ProjectRootForTesting'
+  },
   git: {
     gitignoreURL:
       'https://gist.githubusercontent.com/sandalsoft/9ce8d5454f00efa6e42d5b5f5a9f5af8/raw/.gitignore'

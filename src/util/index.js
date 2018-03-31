@@ -2,9 +2,12 @@ import { log } from './log';
 import { chop } from './chop';
 import { exec } from './exec';
 import { throwIfMissing } from './throw-if-missing';
-import * as inputIsValid from './input-is-valid';
+import { inputIsValid } from './input-is-valid';
 import { isValidProjectDir } from './is-valid-project-dir';
 import { transformCode } from './transform';
+
+export { getProjectTestingRootDir } from './get-project-testing-root-dir';
+export { getComponentTestPath } from './get-component-test-path';
 
 export {
   log,

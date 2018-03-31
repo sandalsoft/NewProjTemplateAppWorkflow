@@ -7,6 +7,7 @@ export const createIndexFile = ({ indexFilePath, indexFileData }) => {
     });
 
   try {
+    console.log(`indexFilePath: ${JSON.stringify(indexFilePath)}`);
     return Promise.resolve(
       writeFile({ filePath: indexFilePath, fileData: indexFileData })
     );
