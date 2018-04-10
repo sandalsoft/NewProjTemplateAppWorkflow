@@ -5,6 +5,7 @@ import { createFunctionTestDir } from './create-function-test-dir';
 import { getFunctionTestDir } from './get-function-test-dir';
 import { removeFile } from '../../util/side-effects';
 
+//TODO: fix this shit
 const testingRootDir = path.join(getProjectRootDir(), 'test');
 const componentName = 'test_cli';
 

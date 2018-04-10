@@ -6,8 +6,8 @@ import { inputIsValid } from './input-is-valid';
 import { isValidProjectDir } from './is-valid-project-dir';
 import { transformCode } from './transform';
 
-export { getProjectTestingRootDir } from './get-project-testing-root-dir';
-export { getComponentTestPath } from './get-component-test-path';
+import { getProjectTestingRootDir } from './get-project-testing-root-dir';
+import { getComponentTestPath } from './get-component-test-path';
 
 export {
   log,
@@ -16,5 +16,7 @@ export {
   throwIfMissing,
   inputIsValid,
   isValidProjectDir,
-  transformCode
+  transformCode,
+  getProjectTestingRootDir,
+  getComponentTestPath
 };

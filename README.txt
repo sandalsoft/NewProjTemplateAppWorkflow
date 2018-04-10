@@ -47,6 +47,8 @@ return output
       "strict": true,
       "noUnusedLocals": true,
       “no-any”: true
+  * add types.d.ts file
+  * import * as T from '@types' or '../types'
   
 
 

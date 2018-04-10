@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "module": "commonjs",
     "lib": ["es2015"],
     "esModuleInterop": true,
     "target": "es5",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",
+    "noEmit": false,
     "baseUrl": ".",
     "paths": {
       "@side-effects/*": ["./src/util/side-effects/*"],
@@ -15,6 +17,6 @@
       "@Config": ["./config"]
     }
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.js"],
   "exclude": ["node_modules", "lib", "dist"]
 }

@@ -8,10 +8,8 @@ import {
   createDirectory
 } from '../../util/side-effects';
 import { createFunctionFile } from './create-function-file';
-import { getProjectTestingRootDir } from '../../util/get-project-testing-root-dir';
 import { getFunctionTestPath } from '../../util/get-funtion-test-path';
 import Config from '../../../config';
-import { createTemplateExpression } from 'typescript';
 
 const functionName = 'takeDump';
 const componentName = 'babel';

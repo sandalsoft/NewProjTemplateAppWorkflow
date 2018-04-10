@@ -1,26 +1,45 @@
 import path from 'path';
 
-import { removeFile, readFile } from '../util/side-effects';
+import {
+  removeFile,
+  readFile,
+  fileExists,
+  createDirectory
+} from '../util/side-effects';
 import { createGitIgnore } from './create-gitignore';
-import { log, isValidProjectDir } from '../util';
+import { getComponentTestPath } from '../util';
 
-const projectRootDir =
-  '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/generator/ProjectRootForTesting';
-const gitignoreFile = path.join(projectRootDir, '.gitignore');
+import Config from '../../config';
 
-// beforeAll(() => {
-//   log('Setting up tests');
-// });
+const componentName = 'git';
+const filename = '.gitignore';
 
-afterAll(() => {
+//  $PROJECT/test/git/ProjectRootForTesting/.gitignore
+
+const componentTestRootPath = path.join(
+  getComponentTestPath({
+    componentName
+  })
+); // $PROJECT/test/git
+
+const projectTestPath = path.join(
+  componentTestRootPath,
+  Config.testing.testingProjDirName
+);
+
+const fileTestPath = path.join(projectTestPath, filename); //  $PROJECT/test/git/ProjectRootForTesting/.gitignore
+
+beforeEach(() => {
   try {
-    const projDir = path.dirname(gitignoreFile);
+    !fileExists(projectTestPath) && createDirectory(projectTestPath);
+  } catch (err) {
+    console.error(err.stack || err);
+  }
+});
 
-    if (isValidProjectDir(projDir)) {
-      removeFile(gitignoreFile);
-    } else {
-      console.log(`No .gitignore file to tear down: ${gitignoreFile}`);
-    }
+afterEach(() => {
+  try {
+    removeFile(componentTestRootPath);
   } catch (err) {
     console.error(err.stack || err);
   }
@@ -30,9 +49,10 @@ test('.gitignore is downloaded and written properly', async () => {
   expect.assertions(1);
   const actual = true;
 
-  const isSuccessful = await createGitIgnore(projectRootDir);
-  const fileContent = readFile({ filePath: gitignoreFile });
-  const expected = fileContent.includes('IF YOU CAN READ THIS, YOU\'RE DEAD');
+  const isSuccessful = await createGitIgnore(projectTestPath);
+  const fileContent = readFile({ filePath: fileTestPath });
+  const expected =
+    fileContent.includes('IF YOU CAN READ THIS, YOU\'RE DEAD') && isSuccessful;
 
   expect(actual).toEqual(expected);
 });

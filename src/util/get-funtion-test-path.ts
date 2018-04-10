@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 import { getProjectTestingRootDir } from './get-project-testing-root-dir';
 
 // function sayName({first='Bob',last='Smith'}: {first?: string; last?: string}={}){
@@ -12,5 +12,5 @@ export const getFunctionTestPath = ({
   functionName: string;
 }): string => {
   console.log(`testingRootPath: ${JSON.stringify(testingRootPath)}`);
-  return path.join(testingRootPath.path, componentName, functionName);
+  return path.join(testingRootPath, componentName, functionName);
 };

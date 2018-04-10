@@ -15,7 +15,7 @@ import Config from '../../../config';
 export const createFunction = async ({ componentName, functionName }) => {
   const projectRootDir = getProjectRootDir({});
   const componentPath = getComponentDir({ componentName, projectRootDir });
-  const componentIndexFilePath = path.join(componentPath, 'index.js');
+  const indexFilePath = path.join(componentPath, 'index.js');
 
   const fileData = Config.cli.functionText(functionName);
   const indexFileData = Config.cli.indexFileImportModuleLine(functionName);
@@ -85,10 +85,10 @@ export const createFunction = async ({ componentName, functionName }) => {
   //
 
   try {
-    fileExists(componentIndexFilePath)
+    fileExists(indexFilePath)
       ? addFunctionToIndex({ functionName, componentPath })
       : createIndexFile({
-          componentIndexFilePath,
+          indexFilePath,
           indexFileData
         });
   } catch (err) {

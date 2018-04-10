@@ -3,73 +3,60 @@ import changeCase from 'change-case';
 
 import { updateIndexFile } from './update-index-file';
 import { createIndexFile } from './create-index-file';
-import { getProjectRootDir } from '../../util/get-project-root-dir';
 import {
   removeFile,
   readFile,
-  // createDirectory,
-  fileExists
+  fileExists,
+  createDirectory
 } from '../../util/side-effects';
-import { getComponentTestPath } from '../../util';
 
-// import { getComponentTestPath } from '../../util';
 import Config from '../../../config';
-
-/* Dir structure for testing
-
-  PROJECT_TEST_ROOT   /Users/enelson/Development/NewProjTemplateAppWorkflow/test
-  COMPONENT   /cli
-              /ProjectRootForTesting
-              /src
-  FUNCTION    /create-functiontest-file.js
-
-*/
 
 const functionName = 'updateIndexFileTestFunction';
 const componentName = 'cli';
 
-const componentTestRootPath = getComponentTestPath({ componentName }); // /cli
-const componentTestSrcPath = path.join(componentTestRootPath, 'src'); // /src
-const dirWhereFunctionTestLives = path.dirname(functionTestFilePath);
-const testFileName = `${changeCase.paramCase(functionName)}.test.js`;
-const functionTestFilePath = path.join(componentTestSrcPath, testFileName); // the right file
+// const componentTestRootPath = getComponentTestPath({ componentName }); // /cli
+// const componentTestSrcPath = path.join(componentTestRootPath, 'src'); // /src
+// // const testFileName = `${changeCase.paramCase(functionName)}.test.js`;
+// const testFileName = 'update-index-file-test-function.test.js';
+// const functionTestFilePath = path.join(componentTestSrcPath, testFileName); // the right file
+// const dirWhereFunctionTestLives = path.dirname(functionTestFilePath);
 
-// const testingRootDir = getProjectTestingRootDir();
-// const functionTestingRoot = path.join(
-//   testingRootDir,
-//   componentName,
-//   'ProjectRootForTesting',
-//   'src'
-// );
-const indexFilePath = path.join(dirWhereFunctionTestLives, 'index.js');
+// const indexFilePath = path.join(dirWhereFunctionTestLives, 'index.js');
 
 const importLine = Config.cli.indexFileImportModuleLine('existingFunctionName');
 const exportLine = Config.cli.indexFileExportModuleLine('existingFunctionName');
 const indexFileData = importLine + '\n' + exportLine;
 const pluginFilePath = path.join(
-  getProjectRootDir(),
-  '/src/util/babel-transform-plugin.js'
+  '/Users/enelson/Development/NewProjTemplateAppWorkflow',
+  // getProjectRootDir(),
+  'src/util/babel-transform-plugin.js'
 );
 
-beforeEach(async () => {
-  try {
-    !fileExists(indexFilePath) &&
-      (await createIndexFile({
-        indexFilePath,
-        indexFileData
-      }));
-  } catch (err) {
-    return Promise.reject(err);
-  }
-});
+const filename = 'index.js';
 
-afterEach(() => {
+const directory =
+  // '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/cli/ProjectRootForTesting/src';
+  Config.testing.ComponentDir(componentName);
+const filePath = path.join(directory, filename);
+
+beforeEach(() => {
   try {
-    fileExists(indexFilePath) && removeFile(indexFilePath);
+    console.log(`creating directory: ${JSON.stringify(directory)}`);
+    !fileExists(directory) && createDirectory(directory);
   } catch (err) {
     console.error(err.stack || err);
   }
 });
+
+// afterEach(() => {
+//   try {
+//     console.log(`deleting directory: ${directory}`);
+//     removeFile(directory);
+//   } catch (err) {
+//     console.error(err.stack || err);
+//   }
+// });
 
 test('index file is updated with proper content', async () => {
   expect.assertions(1);
@@ -77,11 +64,12 @@ test('index file is updated with proper content', async () => {
 
   const isIndexisFileupdated = await updateIndexFile({
     functionName,
-    indexFilePath,
+    filePath,
     pluginFilePath
   });
 
-  const dataFromFile = readFile({ filePath: indexFilePath });
+  console.log(`filePath: ${JSON.stringify(filePath)}`);
+  const dataFromFile = readFile({ filePath: filePath });
 
   const actual =
     dataFromFile.includes(

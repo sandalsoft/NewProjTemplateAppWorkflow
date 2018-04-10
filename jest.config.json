@@ -3,7 +3,8 @@
     "^.+\\.tsx?$": "ts-jest",
     "^.+\\.jsx?$": "babel-jest"
   },
-  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+  "testPathIgnorePatterns": ["/node_modules/", "/test/", "/dist/"],
+  "testRegex": "\\.test\\.(jsx?|tsx?)$",
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
   "moduleNameMapper": {
     "^@side-effects/(.*)": "<rootDir>/src/util/side-effects/$1",

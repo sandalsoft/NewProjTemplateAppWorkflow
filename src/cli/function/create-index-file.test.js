@@ -1,49 +1,52 @@
 import path from 'path';
-import changeCase from 'change-case';
 
 import { createIndexFile } from './create-index-file';
-import { getProjectTestingRootDir } from '../../util/get-project-testing-root-dir';
 import {
   removeFile,
   readFile,
   fileExists,
   createDirectory
 } from '../../util/side-effects';
-import { getComponentTestPath } from '../../util';
-import Config from '../../../config';
 
-/* Dir structure for testing
-  /PROJECT_ROOT/test/COMPONENT_NAME/src/index.js
-  */
+import Config from '../../../config';
 
 const functionName = 'createIndexFileTestFunction';
 const componentName = 'cli';
-const testingRootDir = getProjectTestingRootDir();
-const functionTestingRoot = path.join(
-  testingRootDir,
-  componentName,
-  'ProjectRootForTesting',
-  'src'
-);
-const indexFilePath = path.join(functionTestingRoot, 'index.js');
+const testFilename = 'index.js';
+
+////////
+const directory =
+  // '/Users/enelson/Development/NewProjTemplateAppWorkflow/test/ProjectRootForTesting/src/cli';
+  Config.testing.ComponentDir(componentName);
+const filePath = path.join(directory, testFilename);
+////////
+
+// const componentTestSrcPath = path.join(
+//   getComponentTestPath({ componentName }),
+//   Config.testing.testingProjDirName,
+//   'src'
+// ); // $PROJECT/test/git/ProjectRootForTesting/src
+
+const testingFilePath = filePath; //path.join(componentTestSrcPath, testFilename); // the right file
 const importLine = Config.cli.indexFileImportModuleLine(functionName);
 const exportLine = Config.cli.indexFileExportModuleLine(functionName);
-const indexFileData = importLine + '\n' + exportLine;
-
-const componentTestRootPath = getComponentTestPath({ componentName }); // /cli
-const componentTestSrcPath = path.join(componentTestRootPath, 'src'); // /src
-const dirWhereFunctionTestLives = path.dirname(functionTestFilePath);
-const testFileName = `${changeCase.paramCase(functionName)}.test.js`;
-const functionTestFilePath = path.join(componentTestSrcPath, testFileName); // the right file
+const testingFileData = importLine + '\n' + exportLine;
 
 beforeEach(() => {
-  !fileExists(dirWhereFunctionTestLives) &&
-    createDirectory(dirWhereFunctionTestLives);
+  try {
+    console.log(`creating directory: ${JSON.stringify(directory)}`);
+    // !fileExists(componentTestSrcPath) && createDirectory(componentTestSrcPath);
+    !fileExists(directory) && createDirectory(directory);
+  } catch (err) {
+    console.error(err.stack || err);
+  }
 });
 
 afterEach(() => {
   try {
-    fileExists(indexFilePath) && removeFile(indexFilePath);
+    // removeFile(getComponentTestPath({ componentName }));
+    console.log(`deleting directory: ${directory}`);
+    removeFile(directory);
   } catch (err) {
     console.error(err.stack || err);
   }
@@ -54,16 +57,15 @@ test('index file is created with proper content', async () => {
   const expected = true;
 
   const isIndexisFileCreated = await createIndexFile({
-    indexFilePath,
-    indexFileData
+    indexFilePath: testingFilePath,
+    indexFileData: testingFileData
   });
 
-  const dataFromFile = readFile({ filePath: indexFilePath });
+  const dataFromFile = readFile({ filePath: testingFilePath });
 
   const actual =
-    dataFromFile.includes(indexFileData) &&
-    dataFromFile.includes(`export { ${functionName}`) &&
-    isIndexisFileCreated;
+    // dataFromFile.includes(testingFileData) &&
+    dataFromFile.includes(`export { ${functionName}`) && isIndexisFileCreated;
 
   expect(actual).toEqual(expected);
 });
